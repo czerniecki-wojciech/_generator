@@ -12,7 +12,7 @@ class RepairKitSet
 {
 private:
     std::vector<RepairKit> repairKits;
-    friend std::ostream& operator<< (std::ostream& ostream, RepairKitSet* repairKidSet);
+    friend std::ostream& operator<< (std::ostream& ostream, RepairKitSet& repairKidSet);
 public:
     RepairKitSet() = default;
     RepairKitSet(std::vector<Element> elements, std::shared_ptr<std::default_random_engine> defaultRandomEngine);

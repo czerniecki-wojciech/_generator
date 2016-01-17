@@ -18,8 +18,8 @@ RepairKitSet& RepairKitSet::operator=(const RepairKitSet& rks)
 	return *this;
 }
 
-std::ostream& operator<< (std::ostream& ostream, RepairKitSet* repairKidSet) {
-    std::for_each(repairKidSet->repairKits.begin(), repairKidSet->repairKits.end(), [&ostream](RepairKit& repairKit) {
+std::ostream& operator<< (std::ostream& ostream, RepairKitSet& repairKidSet) {
+    std::for_each(repairKidSet.repairKits.begin(), repairKidSet.repairKits.end(), [&ostream](RepairKit& repairKit) {
         ostream << repairKit.getNumberOfBackupsElemets() << "(" << repairKit.getCostOfBackupElements() << ")|";
     });
     return ostream;
