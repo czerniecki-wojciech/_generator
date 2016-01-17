@@ -1,5 +1,9 @@
 #include "RepairKit.h"
 
+RepairKit::RepairKit()
+    :backupParts(0)
+{}
+
 RepairKit::RepairKit(Element& element, std::shared_ptr<std::default_random_engine> defaultRandomEngine)
     :Element(element)
     ,backupParts(0)

@@ -9,12 +9,12 @@
 class SimulationData : private SimulationInputData
 {
 private:
-    friend std::ostream& operator<< (std::ostream& ostream, SimulationData* sd);
+    friend std::ostream& operator<< (std::ostream& ostream, SimulationData& sd);
 
     RepairKitSet repairKitSet;
     std::shared_ptr<std::default_random_engine> defaultRandomEngine;
 public:
-    SimulationData(std::shared_ptr<SimulationInputData> simulationInputData);
+    SimulationData(SimulationInputData simulationInputData);
     SimulationData(std::string filename); //TODO
     SimulationData(const SimulationData& sd);
     SimulationData& operator= (const SimulationData& sd);

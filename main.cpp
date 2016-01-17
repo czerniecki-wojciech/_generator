@@ -15,19 +15,19 @@ int main()
     std::shared_ptr<OutputsLimits> outputsLimits = std::make_shared<OutputsLimits>(shapeLimit, scaleLimit);
 
     SimulationInputDataGenerator generator(10, outputsLimits, priceLimit);
-    std::shared_ptr<SimulationInputData> simulationInputData = generator.generate();
+    SimulationInputData simulationInputData = generator.generate();
 
     //simulator
-    std::shared_ptr<SimulationData> simulationData = std::make_shared<SimulationData>(simulationInputData);
+    SimulationData simulationData(simulationInputData);
     cout << simulationData;
 
-    simulationData->setNumOfReplaceKitForElement(0 ,2);
-    simulationData->setNumOfReplaceKitForElement(1 ,3);
+    simulationData.setNumOfReplaceKitForElement(0 ,2);
+    simulationData.setNumOfReplaceKitForElement(1 ,3);
     cout << simulationData;
 
-    cout << simulationData->getTotalElementsCost() << std::endl;
+    cout << simulationData.getTotalElementsCost() << std::endl;
 
-    cout << simulationData->getTotalCostOfElement(0);
+    cout << simulationData.getTotalCostOfElement(0);
 
     return 0;
 }

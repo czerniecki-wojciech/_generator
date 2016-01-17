@@ -8,8 +8,10 @@ RepairKitSet::RepairKitSet(std::vector<Element> elements, std::shared_ptr<std::d
 }
 
 RepairKitSet::RepairKitSet(const RepairKitSet& rks)
-    :repairKits(rks.repairKits)
-{}
+    :repairKits(rks.repairKits.size())
+{
+    std::copy(rks.repairKits.begin(), rks.repairKits.end(), this->repairKits.begin());
+}
 
 RepairKitSet& RepairKitSet::operator=(const RepairKitSet& rks)
 {

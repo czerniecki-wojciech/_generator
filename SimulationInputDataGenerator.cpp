@@ -8,9 +8,9 @@ SimulationInputDataGenerator::SimulationInputDataGenerator(uint elementsNum, std
     std::srand(std::time(0));
 }
 
-std::shared_ptr<SimulationInputData> SimulationInputDataGenerator::generate() {
-    std::shared_ptr<SimulationInputData> simulationData = std::make_shared<SimulationInputData>(this->elementsNum);
-    simulationData->erase();
+SimulationInputData SimulationInputDataGenerator::generate() {
+    SimulationInputData simulationData(this->elementsNum);
+    /*simulationData.erase();
 
     float shape;
     float scale;
@@ -22,8 +22,8 @@ std::shared_ptr<SimulationInputData> SimulationInputDataGenerator::generate() {
         scale = static_cast<float>(rand()%90) / 10.0f + 1.0f;
         price = rand()%(priceLimit.second - priceLimit.first) + priceLimit.first;
 
-        simulationData->createAndAddNewElement(shape, scale, price);
-    }
+        simulationData.createAndAddNewElement(shape, scale, price);
+    }*/
 
     return simulationData;
 }

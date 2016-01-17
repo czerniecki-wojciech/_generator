@@ -14,9 +14,10 @@ private:
     std::shared_ptr<std::default_random_engine> defaultRandomEngine;
     std::shared_ptr<std::weibull_distribution<float>> timeGenerator;
 public:
+    RepairKit();
     RepairKit(Element& element, std::shared_ptr<std::default_random_engine> defaultRandomEngine);
     RepairKit(const RepairKit& rk);
-    RepairKit& operator= (const RepairKit&);
+    RepairKit& operator= (const RepairKit& rk);
 
     uint getCostOfBackupElements();
 

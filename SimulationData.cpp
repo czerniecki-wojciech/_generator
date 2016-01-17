@@ -1,6 +1,6 @@
 #include "SimulationData.h"
 
-SimulationData::SimulationData(std::shared_ptr<SimulationInputData> simulationInputData)
+SimulationData::SimulationData(SimulationInputData simulationInputData)
     :SimulationInputData(simulationInputData)
     ,defaultRandomEngine(std::make_shared<std::default_random_engine>())
 {
@@ -10,8 +10,9 @@ SimulationData::SimulationData(std::shared_ptr<SimulationInputData> simulationIn
 SimulationData::SimulationData(const SimulationData& sd)
     :SimulationInputData(sd)
     ,repairKitSet(sd.repairKitSet)
-    ,defaultRandomEngine(defaultRandomEngine)
-{}
+{
+    defaultRandomEngine = defaultRandomEngine;
+}
 
 SimulationData& SimulationData::operator= (const SimulationData& sd)
 {
@@ -22,12 +23,12 @@ SimulationData& SimulationData::operator= (const SimulationData& sd)
     return *this;
 }
 
-std::ostream& operator<< (std::ostream& ostream, SimulationData* sd) {
-    std::for_each(sd->elements.begin(), sd->elements.end(), [&ostream](Element& element) {
+std::ostream& operator<< (std::ostream& ostream, SimulationData& sd) {
+    std::for_each(sd.elements.begin(), sd.elements.end(), [&ostream](Element& element) {
         ostream << element;
     });
 
-    ostream << sd->repairKitSet << std::endl;
+    ostream << sd.repairKitSet << std::endl;
 
     return ostream;
 }

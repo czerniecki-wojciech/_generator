@@ -20,16 +20,31 @@ private:
 protected:
     uint elementsNum;
     std::vector<Element> elements;
-    SimulationInputData(std::shared_ptr<SimulationInputData> simulationInputData)
-    {
-        this->elementsNum = simulationInputData->elementsNum;
-        this->elements = simulationInputData->elements;
-    }
 
 public:
     SimulationInputData(uint elementsNum)
-        : elements(elementsNum)
+        :elementsNum(elementsNum)
     {}
+
+    //SimulationInputData() = default;
+
+    SimulationInputData(const SimulationInputData& sid)
+        :elementsNum(sid.elementsNum)
+        ,elements(sid.elements.size())
+    {
+        std::copy(sid.elements.begin(), sid.elements.end(), this->elements.begin());
+        std::cout << "A" << this->elements.size();
+        std::cout << "Asid" << sid.elements.size();
+    }
+
+    SimulationInputData& operator= (const SimulationInputData& sid)
+    {
+        this->elements = sid.elements;
+        this->elementsNum = sid.elementsNum;
+        std::cout << "B";
+
+        return *this;
+    }
 
     void erase() {
         elements.erase(elements.begin(), elements.end());

@@ -16,7 +16,12 @@ protected:
     uint price;
 
 public:
-    Element() = default;
+    Element()
+        :shape(0.0f)
+        ,scale(0.0f)
+        ,price(0)
+    {}
+
     Element(float shape, float scale, uint price)
         :shape(shape)
         ,scale(scale)

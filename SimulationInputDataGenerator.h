@@ -23,7 +23,7 @@ public:
     SimulationInputDataGenerator(uint elementsNum, std::shared_ptr<OutputsLimits> outputsLimits, std::pair<uint, uint> priceLimit);
 
     //methods
-    std::shared_ptr<SimulationInputData> generate();
+    SimulationInputData generate();
 };
 
 #endif // SIMULATIONDATAGENERATOR_H
