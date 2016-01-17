@@ -1,9 +1,9 @@
 #include "SimulationInputDataGenerator.h"
 
-SimulationInputDataGenerator::SimulationInputDataGenerator(uint elementsNum, std::pair<uint, uint> costLimit)
+SimulationInputDataGenerator::SimulationInputDataGenerator(uint elementsNum, OutputsLimits& OutputsLimits, std::pair<uint, uint> priceLimit)
 {
     this->elementsNum = elementsNum;
-    this->costLimit = costLimit;
+    this->priceLimit = priceLimit;
     std::srand(std::time(0));
 }
 
@@ -11,11 +11,16 @@ std::shared_ptr<SimulationInputData> SimulationInputDataGenerator::generate() {
     std::shared_ptr<SimulationInputData> simulationData = std::make_shared<SimulationInputData>(this->elementsNum);
     simulationData->erase();
 
+    float shape;
+    float scale;
+    int price;
+
     for(uint i=0; i<this->elementsNum; ++i)
     {
-        float shape = static_cast<float>(rand()%90) / 10.0f + 1.0f;
-        float scale = static_cast<float>(rand()%90) / 10.0f + 1.0f;
-        int price = rand()%(costLimit.second - costLimit.first) + costLimit.first;
+        shape = static_cast<float>(rand()%90) / 10.0f + 1.0f;
+        scale = static_cast<float>(rand()%90) / 10.0f + 1.0f;
+        price = rand()%(priceLimit.second - priceLimit.first) + priceLimit.first;
+
         simulationData->createAndAddNewElement(shape, scale, price);
     }
 
