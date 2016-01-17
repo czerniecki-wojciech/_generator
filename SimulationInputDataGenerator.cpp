@@ -10,7 +10,7 @@ SimulationInputDataGenerator::SimulationInputDataGenerator(uint elementsNum, std
 
 SimulationInputData SimulationInputDataGenerator::generate() {
     SimulationInputData simulationData(this->elementsNum);
-    /*simulationData.erase();
+    simulationData.erase();
 
     float shape;
     float scale;
@@ -23,7 +23,7 @@ SimulationInputData SimulationInputDataGenerator::generate() {
         price = rand()%(priceLimit.second - priceLimit.first) + priceLimit.first;
 
         simulationData.createAndAddNewElement(shape, scale, price);
-    }*/
+    }
 
     return simulationData;
 }
