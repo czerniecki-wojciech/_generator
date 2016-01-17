@@ -20,6 +20,8 @@ RepairKit& RepairKit::operator= (const RepairKit& rk)
     Element::operator =(rk);
     this->defaultRandomEngine = rk.defaultRandomEngine;
     this->timeGenerator = rk.timeGenerator;
+
+	return *this;
 }
 
 uint RepairKit::getCostOfBackupElements()

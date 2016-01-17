@@ -34,6 +34,7 @@ public:
         this->scale = element.scale;
         this->shape = element.shape;
         this->price = element.price;
+		return *this;
     }
 
     float getScale() const

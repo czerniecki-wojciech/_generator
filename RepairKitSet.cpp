@@ -14,6 +14,8 @@ RepairKitSet::RepairKitSet(const RepairKitSet& rks)
 RepairKitSet& RepairKitSet::operator=(const RepairKitSet& rks)
 {
     this->repairKits = rks.repairKits;
+
+	return *this;
 }
 
 std::ostream& operator<< (std::ostream& ostream, RepairKitSet* repairKidSet) {
