@@ -8,6 +8,20 @@ RepairKit::RepairKit(Element& element, std::shared_ptr<std::default_random_engin
     timeGenerator = std::make_shared<std::weibull_distribution<float>>(this->shape, this->scale);
 }
 
+RepairKit::RepairKit(const RepairKit& rk)
+    :Element(rk)
+{
+    this->defaultRandomEngine = rk.defaultRandomEngine;
+    this->timeGenerator = rk.timeGenerator;
+}
+
+RepairKit& RepairKit::operator= (const RepairKit& rk)
+{
+    Element::operator =(rk);
+    this->defaultRandomEngine = rk.defaultRandomEngine;
+    this->timeGenerator = rk.timeGenerator;
+}
+
 uint RepairKit::getCostOfBackupElements()
 {
     return price * backupParts;

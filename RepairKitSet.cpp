@@ -7,6 +7,15 @@ RepairKitSet::RepairKitSet(std::vector<Element> elements, std::shared_ptr<std::d
     });
 }
 
+RepairKitSet::RepairKitSet(const RepairKitSet& rks)
+    :repairKits(rks.repairKits)
+{}
+
+RepairKitSet& RepairKitSet::operator=(const RepairKitSet& rks)
+{
+    this->repairKits = rks.repairKits;
+}
+
 std::ostream& operator<< (std::ostream& ostream, RepairKitSet* repairKidSet) {
     std::for_each(repairKidSet->repairKits.begin(), repairKidSet->repairKits.end(), [&ostream](RepairKit& repairKit) {
         ostream << repairKit.getNumberOfBackupsElemets() << "(" << repairKit.getCostOfBackupElements() << ")|";

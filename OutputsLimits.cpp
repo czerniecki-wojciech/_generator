@@ -20,3 +20,15 @@ OutputsLimits::OutputsLimits(std::pair<int, int> shapeLimit, std::pair<int, int>
     this->scaleLimit = scaleLimit;
 }
 
+OutputsLimits::OutputsLimits(const OutputsLimits& ol)
+{
+    this->shapeLimit = ol.shapeLimit;
+    this->scaleLimit = ol.scaleLimit;
+}
+
+OutputsLimits& OutputsLimits::operator= (const OutputsLimits& ol)
+{
+    this->shapeLimit = ol.shapeLimit;
+    this->scaleLimit = ol.scaleLimit;
+}
+

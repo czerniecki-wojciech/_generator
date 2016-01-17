@@ -13,6 +13,8 @@ public:
 
     OutputsLimits(int shapeLimitMin, int shapeLimitMax, int scaleLimitMin, int scaleLimitMax);
     OutputsLimits(std::pair<int, int> shapeLimit, std::pair<int, int> scaleLimit);
+    OutputsLimits(const OutputsLimits& ol);
+    OutputsLimits& operator= (const OutputsLimits&);
 };
 
 #endif // OUTPUTSLIMITS_H

@@ -29,6 +29,13 @@ public:
         this->price = element.price;
     }
 
+    Element& operator= (const Element& element)
+    {
+        this->scale = element.scale;
+        this->shape = element.shape;
+        this->price = element.price;
+    }
+
     float getScale() const
     {
         return scale;
