@@ -23,3 +23,8 @@ void RepairKit::setNumberOfBackupsElemets(uint number)
 {
     this->backupParts = number;
 }
+
+uint RepairKit::getNumberOfBackupsElemets()
+{
+    return backupParts;
+}

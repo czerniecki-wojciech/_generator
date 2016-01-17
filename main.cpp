@@ -17,10 +17,11 @@ int main()
     SimulationInputDataGenerator generator(10, outputsLimits, priceLimit);
     std::shared_ptr<SimulationInputData> simulationInputData = generator.generate();
 
-    cout << simulationInputData;
-
     //simulator
     std::shared_ptr<SimulationData> simulationData = std::make_shared<SimulationData>(simulationInputData);
+    cout << simulationData;
+
+    simulationData->setNumOfReplaceKitForElement(0 ,2);
     cout << simulationData;
 
     cout << simulationData->getTotalElementsCost() << std::endl;

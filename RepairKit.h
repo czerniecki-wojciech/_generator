@@ -21,6 +21,7 @@ public:
     float getNextFailureTime();
 
     void setNumberOfBackupsElemets(uint number);
+    uint getNumberOfBackupsElemets();
 };
 
 #endif // REPAIRKIT_H

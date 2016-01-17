@@ -21,3 +21,15 @@ uint SimulationData::getTotalElementsCost()
 {
     return repairKitSet->getTotalElementsCost();
 }
+
+bool SimulationData::isReplaceKitForElement(uint num) {
+    return repairKitSet->isReplaceKitForElement(num);
+}
+
+void SimulationData::takeReplaceKitForElement(uint num) {
+    repairKitSet->takeReplaceKitForElement(num);
+}
+
+void SimulationData::setNumOfReplaceKitForElement(uint num, uint elementsNum) {
+    repairKitSet->setNumOfReplaceKitForElement(num, elementsNum);
+}

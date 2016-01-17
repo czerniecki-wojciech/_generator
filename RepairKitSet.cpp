@@ -9,7 +9,7 @@ RepairKitSet::RepairKitSet(std::vector<Element> elements, std::shared_ptr<std::d
 
 std::ostream& operator<< (std::ostream& ostream, RepairKitSet* repairKidSet) {
     std::for_each(repairKidSet->repairKits.begin(), repairKidSet->repairKits.end(), [&ostream](RepairKit& repairKit) {
-        ostream << repairKit.getCostOfBackupElements() << "|";
+        ostream << repairKit.getNumberOfBackupsElemets() << "(" << repairKit.getCostOfBackupElements() << ")|";
     });
     return ostream;
 }
@@ -22,4 +22,17 @@ uint RepairKitSet::getTotalElementsCost() {
     });
 
     return totalCost;
+}
+
+bool RepairKitSet::isReplaceKitForElement(uint num) {
+    return repairKits.at(num).getNumberOfBackupsElemets() > 0;
+}
+
+void RepairKitSet::takeReplaceKitForElement(uint num) {
+    uint elements = repairKits.at(num).getNumberOfBackupsElemets();
+    repairKits.at(num).setNumberOfBackupsElemets(elements -1);
+}
+
+void RepairKitSet::setNumOfReplaceKitForElement(uint num, uint elementsNum) {
+    repairKits.at(num).setNumberOfBackupsElemets(elementsNum);
 }
