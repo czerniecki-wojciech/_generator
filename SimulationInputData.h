@@ -1,8 +1,10 @@
-#ifndef SIMULATIONDATA_H
-#define SIMULATIONDATA_H
+#ifndef SIMULATIONINPUTDATA_H
+#define SIMULATIONINPUTDATA_H
 #include <vector>
 #include <iostream>
-#include <algorithm> //for_each
+#include <algorithm>
+#include <memory>
+
 #include "myTypes.h"
 #include "Element.h"
 
@@ -18,6 +20,11 @@ private:
 protected:
     uint elementsNum;
     std::vector<Element> elements;
+    SimulationInputData(std::shared_ptr<SimulationInputData> simulationInputData)
+    {
+        this->elementsNum = simulationInputData->elementsNum;
+        this->elements = simulationInputData->elements;
+    }
 
 public:
     SimulationInputData(uint elementsNum)
@@ -45,4 +52,4 @@ public:
     }
 };
 
-#endif // SIMULATIONDATA_H
+#endif // SIMULATIONINPUTDATA_H

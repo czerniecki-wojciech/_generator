@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "SimulationInputDataGenerator.h"
+#include "SimulationData.h"
 
 using namespace std;
 
@@ -15,7 +16,10 @@ int main()
     SimulationInputDataGenerator generator(10, outputsLimits, priceLimit);
     std::shared_ptr<SimulationInputData> simulationInputData = generator.generate();
 
+    std::shared_ptr<SimulationData> simulationData = std::make_shared<SimulationData>(simulationInputData);
+
     cout << simulationInputData;
+    cout << simulationData;
 
 
 

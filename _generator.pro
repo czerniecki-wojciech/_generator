@@ -6,7 +6,8 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     SimulationInputDataGenerator.cpp \
-    OutputsLimits.cpp
+    OutputsLimits.cpp \
+    SimulationData.cpp
 
 HEADERS += \
     myTypes.h \
@@ -14,5 +15,6 @@ HEADERS += \
     SimulationInputDataGenerator.h \
     OutputsLimits.h \
     MinMaxBoundLimitError.h \
-    SimulationInputData.h
+    SimulationInputData.h \
+    SimulationData.h
 
