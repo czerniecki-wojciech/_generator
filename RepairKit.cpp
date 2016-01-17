@@ -17,6 +17,7 @@ RepairKit::RepairKit(const RepairKit& rk)
 {
     this->defaultRandomEngine = rk.defaultRandomEngine;
     this->timeGenerator = rk.timeGenerator;
+	this->backupParts = rk.backupParts;
 }
 
 RepairKit& RepairKit::operator= (const RepairKit& rk)
@@ -24,6 +25,7 @@ RepairKit& RepairKit::operator= (const RepairKit& rk)
     Element::operator =(rk);
     this->defaultRandomEngine = rk.defaultRandomEngine;
     this->timeGenerator = rk.timeGenerator;
+	this->backupParts = rk.backupParts;
 
 	return *this;
 }
