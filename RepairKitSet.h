@@ -17,6 +17,7 @@ public:
     RepairKitSet(std::vector<Element> elements, std::shared_ptr<std::default_random_engine> defaultRandomEngine);
 
     uint getTotalElementsCost();
+    uint getTotalCostOfElement(uint num);
 
     bool isReplaceKitForElement(uint num);
     void takeReplaceKitForElement(uint num);

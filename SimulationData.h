@@ -18,6 +18,7 @@ public:
     SimulationData(std::string filename); //TODO
 
     uint getTotalElementsCost();
+    uint getTotalCostOfElement(uint num);
 
     bool isReplaceKitForElement(uint num);
     void takeReplaceKitForElement(uint num);

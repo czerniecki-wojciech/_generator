@@ -22,9 +22,12 @@ int main()
     cout << simulationData;
 
     simulationData->setNumOfReplaceKitForElement(0 ,2);
+    simulationData->setNumOfReplaceKitForElement(1 ,3);
     cout << simulationData;
 
     cout << simulationData->getTotalElementsCost() << std::endl;
+
+    cout << simulationData->getTotalCostOfElement(0);
 
     return 0;
 }

@@ -36,3 +36,8 @@ void RepairKitSet::takeReplaceKitForElement(uint num) {
 void RepairKitSet::setNumOfReplaceKitForElement(uint num, uint elementsNum) {
     repairKits.at(num).setNumberOfBackupsElemets(elementsNum);
 }
+
+uint RepairKitSet::getTotalCostOfElement(uint num)
+{
+    return repairKits.at(num).getCostOfBackupElements();
+}
