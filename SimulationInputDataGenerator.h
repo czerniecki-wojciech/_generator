@@ -7,7 +7,7 @@
 #include <utility>
 
 #include "myTypes.h"
-#include "SimulationData.h"
+#include "SimulationInputData.h"
 #include "OutputsLimits.h"
 
 
@@ -17,9 +17,10 @@ class SimulationInputDataGenerator
 private:
     uint elementsNum;
     std::pair<uint, uint> priceLimit;
+    std::shared_ptr<OutputsLimits> outputsLimits;
 public:
     //ctor
-    SimulationInputDataGenerator(uint elementsNum, OutputsLimits& OutputsLimits, std::pair<uint, uint> priceLimit);
+    SimulationInputDataGenerator(uint elementsNum, std::shared_ptr<OutputsLimits> outputsLimits, std::pair<uint, uint> priceLimit);
 
     //methods
     std::shared_ptr<SimulationInputData> generate();

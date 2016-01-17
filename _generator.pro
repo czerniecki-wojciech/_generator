@@ -9,10 +9,10 @@ SOURCES += main.cpp \
     OutputsLimits.cpp
 
 HEADERS += \
-    SimulationData.h \
     myTypes.h \
     Element.h \
     SimulationInputDataGenerator.h \
     OutputsLimits.h \
-    MinMaxBoundLimitError.h
+    MinMaxBoundLimitError.h \
+    SimulationInputData.h
 

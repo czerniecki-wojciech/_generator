@@ -8,14 +8,16 @@
 
 class SimulationInputData {
 private:
-    uint elementsNum;
-    std::vector<Element> elements;
+
     friend std::ostream& operator<< (std::ostream& ostream, SimulationInputData* sd) {
         std::for_each(sd->elements.begin(), sd->elements.end(), [&ostream](Element& element) {
             ostream << element;
         });
         return ostream;
     }
+protected:
+    uint elementsNum;
+    std::vector<Element> elements;
 
 public:
     SimulationInputData(uint elementsNum)

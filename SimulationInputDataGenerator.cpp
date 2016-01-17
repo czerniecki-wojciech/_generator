@@ -1,9 +1,10 @@
 #include "SimulationInputDataGenerator.h"
 
-SimulationInputDataGenerator::SimulationInputDataGenerator(uint elementsNum, OutputsLimits& OutputsLimits, std::pair<uint, uint> priceLimit)
+SimulationInputDataGenerator::SimulationInputDataGenerator(uint elementsNum, std::shared_ptr<OutputsLimits> outputsLimits, std::pair<uint, uint> priceLimit)
 {
     this->elementsNum = elementsNum;
     this->priceLimit = priceLimit;
+    this->outputsLimits = outputsLimits;
     std::srand(std::time(0));
 }
 
