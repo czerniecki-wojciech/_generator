@@ -7,7 +7,9 @@ CONFIG += c++11
 SOURCES += main.cpp \
     SimulationInputDataGenerator.cpp \
     OutputsLimits.cpp \
-    SimulationData.cpp
+    SimulationData.cpp \
+    RepairKitSet.cpp \
+    RepairKit.cpp
 
 HEADERS += \
     myTypes.h \
@@ -16,5 +18,7 @@ HEADERS += \
     OutputsLimits.h \
     MinMaxBoundLimitError.h \
     SimulationInputData.h \
-    SimulationData.h
+    SimulationData.h \
+    RepairKitSet.h \
+    RepairKit.h
 
