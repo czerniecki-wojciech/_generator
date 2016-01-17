@@ -11,11 +11,13 @@ class SimulationData : private SimulationInputData
 private:
     friend std::ostream& operator<< (std::ostream& ostream, SimulationData* sd);
 
-    std::shared_ptr<RepairKitSet> repairKitSet;
+    RepairKitSet repairKitSet;
     std::shared_ptr<std::default_random_engine> defaultRandomEngine;
 public:
     SimulationData(std::shared_ptr<SimulationInputData> simulationInputData);
     SimulationData(std::string filename); //TODO
+    SimulationData(const SimulationData& sd);
+    SimulationData& operator= (const SimulationData& sd);
 
     uint getTotalElementsCost();
     uint getTotalCostOfElement(uint num);
