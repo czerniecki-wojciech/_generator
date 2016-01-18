@@ -5,6 +5,7 @@ SimulationData::SimulationData(SimulationInputData simulationInputData)
     ,defaultRandomEngine(std::make_shared<std::default_random_engine>())
 {
     repairKitSet = RepairKitSet(this->elements, defaultRandomEngine);
+    conservator.setDefaultRandomEngine(defaultRandomEngine);
 }
 
 SimulationData::SimulationData(const SimulationData& sd)
@@ -18,7 +19,7 @@ SimulationData& SimulationData::operator= (const SimulationData& sd)
 {
     SimulationInputData::operator=(sd);
     this->repairKitSet = sd.repairKitSet;
-    this->defaultRandomEngine = defaultRandomEngine;
+    this->defaultRandomEngine = sd.defaultRandomEngine;
 
     return *this;
 }

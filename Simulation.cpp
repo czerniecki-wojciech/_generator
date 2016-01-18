@@ -37,6 +37,7 @@ void Simulation::runSingleSimulation(SimulationData sd)
 
         if(timeToAdvance * float(numberOfConservators) >= money) {
             workingTime += money / float(numberOfConservators);
+            totalTime += money / float(numberOfConservators);
             money = 0;
         } else {
             for(uint i=0; i<events.size(); ++i)

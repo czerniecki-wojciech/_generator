@@ -31,15 +31,32 @@ int main()
 
     uint maxCost = 20;
     uint maxNumberOfConservators = 2;
+    uint reapets = 10;
+
+    std::vector<std::vector<std::pair<SimulationResult, SimulationData>>> bruteforceByNumOfConservators;
+    for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
+    {
+        bruteforceByNumOfConservators.push_back(std::vector<std::pair<SimulationResult, SimulationData>>());
+    }
 
     PermutationIterator pi(simulationData, maxCost);
     while(pi.get().getTotalElementsCost() <= maxCost)
     {
-        //sym
-        Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), 1, 10);
-        std::cout << "sym for " << pi.get().getTotalElementsCost() << std::endl;
-        std::cout << "avg result " << simulation.getAvaragedResult().totalTime << std::endl;
+        for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
+        {
+            Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, reapets);
+            std::cout << "sym for " << pi.get().getTotalElementsCost() << std::endl;
+            std::cout << "avg result " << simulation.getAvaragedResult().totalTime << std::endl;
+            bruteforceByNumOfConservators.at(numOfConservators-1)
+                    .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
+                                                                           simulationData));
+        }
         ++pi;
+    }
+
+    for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
+    {
+        bruteforceByNumOfConservators.at(numOfConservators).size();
     }
 
     return 0;

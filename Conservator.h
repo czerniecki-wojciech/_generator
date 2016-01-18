@@ -11,7 +11,6 @@ protected:
     float scale;
     std::shared_ptr<std::default_random_engine> defaultRandomEngine;
 
-    void setDefaultRandomEngine(std::shared_ptr<std::default_random_engine> defaultRandomEngine);
 public:
     Conservator() = default;
     Conservator(float shape, float scale);
@@ -22,6 +21,7 @@ public:
     float getScale();
 
     float getRepairTime();
+    void setDefaultRandomEngine(std::shared_ptr<std::default_random_engine> defaultRandomEngine);
 };
 
 #endif // CONSERVATOR_H
