@@ -35,7 +35,7 @@ int main()
     while(pi.get().getTotalElementsCost() <= maxCost)
     {
         //sym
-        Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), 1, 1);
+        Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), 1, 10);
         std::cout << "sym for " << pi.get().getTotalElementsCost() << std::endl;
         std::cout << "avg result " << simulation.getAvaragedResult() << std::endl;
         ++pi;
