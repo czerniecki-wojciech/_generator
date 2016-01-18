@@ -30,9 +30,9 @@ int main()
 
     cout << simulationInputData;
 
-    uint maxCost = 200;
+    uint maxCost = 100;
     uint maxNumberOfConservators = 3;
-    uint reapets = 30;
+    uint reapets = 10;
 
     uint numOfIndividuals = 50;
     uint numOfGenerations = 50;

@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     Conservator.cpp \
     BruteForce.cpp \
     Evolution.cpp \
-    PermutationGenerator.cpp
+    PermutationGenerator.cpp \
+    Adaptive.cpp
 
 HEADERS += \
     myTypes.h \
@@ -34,5 +35,6 @@ HEADERS += \
     Conservator.h \
     BruteForce.h \
     Evolution.h \
-    PermutationGenerator.h
+    PermutationGenerator.h \
+    Adaptive.h
 
