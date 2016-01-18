@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     PermutationIterator.cpp \
     Simulation.cpp \
     SimulationResult.cpp \
-    Conservator.cpp
+    Conservator.cpp \
+    BruteForce.cpp
 
 HEADERS += \
     myTypes.h \
@@ -28,5 +29,6 @@ HEADERS += \
     PermutationIterator.h \
     Simulation.h \
     SimulationResult.h \
-    Conservator.h
+    Conservator.h \
+    BruteForce.h
 
