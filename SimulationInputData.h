@@ -7,6 +7,7 @@
 
 #include "myTypes.h"
 #include "Element.h"
+#include "Conservator.h"
 
 class SimulationInputData {
 private:
@@ -20,17 +21,17 @@ private:
 protected:
     uint elementsNum;
     std::vector<Element> elements;
+    Conservator conservator;
 
 public:
     SimulationInputData(uint elementsNum)
         :elementsNum(elementsNum)
     {}
 
-    //SimulationInputData() = default;
-
     SimulationInputData(const SimulationInputData& sid)
         :elementsNum(sid.elementsNum)
         ,elements(sid.elements.size())
+        ,conservator(sid.conservator)
     {
         std::copy(sid.elements.begin(), sid.elements.end(), this->elements.begin());
     }
@@ -39,6 +40,7 @@ public:
     {
         this->elements = sid.elements;
         this->elementsNum = sid.elementsNum;
+        this->conservator = sid.conservator;
 
         return *this;
     }
@@ -61,6 +63,10 @@ public:
 
     void createAndAddNewElement(float shape, float scale, uint price) {
         elements.emplace_back(shape, scale, price);
+    }
+
+    void addConservator(float shape, float scale){
+        conservator = Conservator(shape, scale);
     }
 };
 

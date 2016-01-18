@@ -55,6 +55,10 @@ float SimulationData::getDamageTime(uint num) {
     return repairKitSet.getDamageTime(num);
 }
 
+float SimulationData::getRepairTime() {
+    return conservator.getRepairTime();
+}
+
 bool SimulationData::isReplaceKitForElement(uint num) {
     return repairKitSet.isReplaceKitForElement(num);
 }

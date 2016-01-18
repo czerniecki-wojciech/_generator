@@ -1,6 +1,6 @@
 #include "Simulation.h"
 
-uint findLowestTimeIndex(std::vector<float>& events) {
+uint Simulation::findLowestTimeIndex(std::vector<float>& events) {
     float lowest = std::numeric_limits<float>::max();
     uint index = 0;
 
@@ -18,7 +18,8 @@ uint findLowestTimeIndex(std::vector<float>& events) {
 
 void Simulation::runSingleSimulation(SimulationData sd)
 {
-    float result = 0;
+    float workingTime = 0.0f;
+    float totalTime = 0.0f;
 
     float money = moneyForConservators;
 
@@ -35,7 +36,7 @@ void Simulation::runSingleSimulation(SimulationData sd)
         float timeToAdvance = events.at(currentEvent);
 
         if(timeToAdvance * float(numberOfConservators) >= money) {
-            result += money / float(numberOfConservators);
+            workingTime += money / float(numberOfConservators);
             money = 0;
         } else {
             for(uint i=0; i<events.size(); ++i)
@@ -43,7 +44,8 @@ void Simulation::runSingleSimulation(SimulationData sd)
                 events.at(i) = events.at(i) - timeToAdvance;
             }
             money -= timeToAdvance * float(numberOfConservators);
-            result += timeToAdvance;
+            workingTime += timeToAdvance;
+            totalTime += timeToAdvance + sd.getRepairTime() / float(numberOfConservators);
 
             if(sd.isReplaceKitForElement(currentEvent))
             {
@@ -55,7 +57,7 @@ void Simulation::runSingleSimulation(SimulationData sd)
         }
     }
 
-    results.push_back(result);
+    results.push_back(SimulationResult(workingTime, totalTime));
 }
 
 Simulation::Simulation(SimulationData sd, uint moneyForConservators, uint numberOfConservators, uint repeat)
@@ -77,7 +79,7 @@ Simulation::Simulation(const Simulation& s)
 
 Simulation& Simulation::operator= (const Simulation& s)
 {
-    results = std::vector<float>(s.results.size());
+    results = std::vector<SimulationResult>(s.results.size());
     moneyForConservators = s.moneyForConservators;
     repeat = s.repeat;
     numberOfConservators = s.numberOfConservators;
@@ -88,19 +90,21 @@ Simulation& Simulation::operator= (const Simulation& s)
     return *this;
 }
 
-float Simulation::getAvaragedResult()
+SimulationResult Simulation::getAvaragedResult()
 {
-    float sum = 0;
+    float sumWorkingTime = 0.0f;
+    float sumTotalTime = 0.0f;
 
     for(uint n=0; n<repeat; ++n)
     {
         runSingleSimulation(simulationData);
     }
 
-    std::for_each(results.begin(), results.end(), [&sum] (float v) {
-        sum += v;
-        std::cout << "simulation result " << v << std::endl;
+    std::for_each(results.begin(), results.end(), [&sumWorkingTime, &sumTotalTime] (SimulationResult v) {
+        sumWorkingTime += v.workingTime;
+        sumTotalTime += v.totalTime;
+        std::cout << "simulation result " << v.workingTime << " " << v.totalTime << std::endl;
     });
 
-    return sum/float(repeat);
+    return SimulationResult(sumWorkingTime/float(repeat), sumTotalTime/float(repeat));
 }

@@ -24,6 +24,7 @@ public:
     uint getTotalCostOfElement(uint num);
     uint getNumberOfBackupsElemets(uint num);
     float getDamageTime(uint num);
+    float getRepairTime();
 
     bool isReplaceKitForElement(uint num);
     void takeReplaceKitForElement(uint num);

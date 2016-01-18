@@ -15,8 +15,9 @@ int main()
     std::pair<uint, uint> scaleLimit = std::make_pair<uint, uint>(1, 10);
 
     std::shared_ptr<OutputsLimits> outputsLimits = std::make_shared<OutputsLimits>(shapeLimit, scaleLimit);
+    std::shared_ptr<ConservatorLimits> conservatorLimits = std::make_shared<ConservatorLimits>(shapeLimit, scaleLimit);
 
-    SimulationInputDataGenerator generator(3, outputsLimits, priceLimit);
+    SimulationInputDataGenerator generator(3, outputsLimits, priceLimit, conservatorLimits);
     SimulationInputData simulationInputData = generator.generate();
 
     //simulator
@@ -37,7 +38,7 @@ int main()
         //sym
         Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), 1, 10);
         std::cout << "sym for " << pi.get().getTotalElementsCost() << std::endl;
-        std::cout << "avg result " << simulation.getAvaragedResult() << std::endl;
+        std::cout << "avg result " << simulation.getAvaragedResult().totalTime << std::endl;
         ++pi;
     }
 

@@ -18,9 +18,10 @@ private:
     uint elementsNum;
     std::pair<uint, uint> priceLimit;
     std::shared_ptr<OutputsLimits> outputsLimits;
+    std::shared_ptr<ConservatorLimits> conservatorLimits;
 public:
     //ctor
-    SimulationInputDataGenerator(uint elementsNum, std::shared_ptr<OutputsLimits> outputsLimits, std::pair<uint, uint> priceLimit);
+    SimulationInputDataGenerator(uint elementsNum, std::shared_ptr<OutputsLimits> outputsLimits, std::pair<uint, uint> priceLimit, std::shared_ptr<ConservatorLimits> conservatorLimits);
 
     //methods
     SimulationInputData generate();

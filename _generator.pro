@@ -11,7 +11,9 @@ SOURCES += main.cpp \
     RepairKitSet.cpp \
     RepairKit.cpp \
     PermutationIterator.cpp \
-    Simulation.cpp
+    Simulation.cpp \
+    SimulationResult.cpp \
+    Conservator.cpp
 
 HEADERS += \
     myTypes.h \
@@ -24,5 +26,7 @@ HEADERS += \
     RepairKitSet.h \
     RepairKit.h \
     PermutationIterator.h \
-    Simulation.h
+    Simulation.h \
+    SimulationResult.h \
+    Conservator.h
 
