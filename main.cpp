@@ -49,7 +49,7 @@ int main()
             std::cout << "avg result " << simulation.getAvaragedResult().totalTime << std::endl;
             bruteforceByNumOfConservators.at(numOfConservators-1)
                     .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
-                                                                           simulationData));
+                                                                           pi.get()));
         }
         ++pi;
     }
