@@ -31,7 +31,7 @@ int main()
 
     uint maxCost = 20;
     uint maxNumberOfConservators = 2;
-    uint reapets = 10;
+    uint reapets = 1;
 
     std::vector<std::vector<std::pair<SimulationResult, SimulationData>>> bruteforceByNumOfConservators;
     for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
@@ -46,7 +46,8 @@ int main()
         {
             Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, reapets);
             std::cout << "sym for " << pi.get().getTotalElementsCost() << std::endl;
-            std::cout << "avg result " << simulation.getAvaragedResult().totalTime << std::endl;
+            std::cout << "avg result w " << simulation.getAvaragedResult().workingTime << std::endl;
+            std::cout << "avg result t " << simulation.getAvaragedResult().totalTime << std::endl;
             bruteforceByNumOfConservators.at(numOfConservators-1)
                     .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
                                                                            pi.get()));
@@ -98,6 +99,8 @@ int main()
     }
 
     std::cout << "Best working time: " << bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators-1).at(indexBestWorkingTime).first.workingTime << std::endl;
+    std::cout << "Numebr of conservators: " << bestWorkingTimeNumOfConservators << std::endl;
+    std::cout << "SimulationData:" << std::endl;
     std::cout << bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators-1).at(indexBestWorkingTime).second << std::endl;
 
     return 0;

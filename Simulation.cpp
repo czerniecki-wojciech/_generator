@@ -46,7 +46,17 @@ void Simulation::runSingleSimulation(SimulationData sd)
             }
             money -= timeToAdvance * float(numberOfConservators);
             workingTime += timeToAdvance;
-            totalTime += timeToAdvance + sd.getRepairTime() / float(numberOfConservators);
+            totalTime += timeToAdvance;
+
+            float repairTime = sd.getRepairTime() / float(numberOfConservators);
+            if(repairTime * numberOfConservators <= money)
+            {
+                money -= repairTime * float(numberOfConservators);
+                totalTime += repairTime / float(numberOfConservators);
+            } else {
+                money = 0.0f;
+                totalTime += money / float(numberOfConservators);
+            }
 
             if(sd.isReplaceKitForElement(currentEvent))
             {
@@ -104,7 +114,6 @@ SimulationResult Simulation::getAvaragedResult()
     std::for_each(results.begin(), results.end(), [&sumWorkingTime, &sumTotalTime] (SimulationResult v) {
         sumWorkingTime += v.workingTime;
         sumTotalTime += v.totalTime;
-        std::cout << "simulation result " << v.workingTime << " " << v.totalTime << std::endl;
     });
 
     return SimulationResult(sumWorkingTime/float(repeat), sumTotalTime/float(repeat));
