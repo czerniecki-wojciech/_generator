@@ -1,6 +1,6 @@
-#include "BruteForce.h"
+#include "Evolution.h"
 
-BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint reapets)
+Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint reapets, uint individuals, uint generations)
 {
     std::vector<std::vector<std::pair<SimulationResult, SimulationData>>> bruteforceByNumOfConservators;
     for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
@@ -8,7 +8,8 @@ BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumb
         bruteforceByNumOfConservators.push_back(std::vector<std::pair<SimulationResult, SimulationData>>());
     }
 
-    PermutationIterator pi(simulationData, maxCost);
+    /*
+     * PermutationIterator pi(simulationData, maxCost);
     while(pi.get().getTotalElementsCost() <= maxCost)
     {
         for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
@@ -19,6 +20,21 @@ BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumb
                                                                            pi.get()));
         }
         ++pi;
+    }*/
+
+
+    PermutationGenerator pg(simulationData, maxCost);
+
+    for(uint i=0; i<generations * individuals; ++i)
+    {
+        for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
+        {
+            SimulationData sd = ++pg;
+            Simulation simulation(sd, maxCost - sd.getTotalElementsCost(), numOfConservators, reapets);
+            bruteforceByNumOfConservators.at(numOfConservators-1)
+                    .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
+                                                                           sd));
+        }
     }
 
     uint bestWorkingTime = 0;

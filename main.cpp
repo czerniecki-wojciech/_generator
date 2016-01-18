@@ -5,6 +5,7 @@
 #include "PermutationIterator.h"
 #include "Simulation.h"
 #include "BruteForce.h"
+#include "Evolution.h"
 
 using namespace std;
 
@@ -33,7 +34,11 @@ int main()
     uint maxNumberOfConservators = 2;
     uint reapets = 10;
 
+    uint numOfIndividuals = 10;
+    uint numOfGenerations = 10;
+
     BruteForce bf(simulationData, maxCost, maxNumberOfConservators, reapets);
+    Evolution ev(simulationData, maxCost, maxNumberOfConservators, reapets, numOfIndividuals, numOfGenerations);
 
     return 0;
 }

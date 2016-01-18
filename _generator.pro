@@ -14,7 +14,9 @@ SOURCES += main.cpp \
     Simulation.cpp \
     SimulationResult.cpp \
     Conservator.cpp \
-    BruteForce.cpp
+    BruteForce.cpp \
+    Evolution.cpp \
+    PermutationGenerator.cpp
 
 HEADERS += \
     myTypes.h \
@@ -30,5 +32,7 @@ HEADERS += \
     Simulation.h \
     SimulationResult.h \
     Conservator.h \
-    BruteForce.h
+    BruteForce.h \
+    Evolution.h \
+    PermutationGenerator.h
 
