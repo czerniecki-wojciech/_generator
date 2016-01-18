@@ -14,4 +14,6 @@ SimulationResult& SimulationResult::operator= (const SimulationResult& sr)
 {
     workingTime = sr.workingTime;
     totalTime = sr.totalTime;
+
+	return *this;
 }
