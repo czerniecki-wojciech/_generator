@@ -37,8 +37,8 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
         }
     }
 
-    uint bestWorkingTime = 0;
-    uint bestTotalTime = 0;
+    float bestWorkingTime = 0;
+    float bestTotalTime = 0;
     float bestPercentOfWorkingTime = 0.0f;
 
     uint bestWorkingTimeNumOfConservators = 1;

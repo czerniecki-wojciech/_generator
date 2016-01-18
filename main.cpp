@@ -30,12 +30,12 @@ int main()
 
     cout << simulationInputData;
 
-    uint maxCost = 100;
-    uint maxNumberOfConservators = 2;
-    uint reapets = 10;
+    uint maxCost = 200;
+    uint maxNumberOfConservators = 3;
+    uint reapets = 30;
 
-    uint numOfIndividuals = 10;
-    uint numOfGenerations = 10;
+    uint numOfIndividuals = 50;
+    uint numOfGenerations = 50;
 
     BruteForce bf(simulationData, maxCost, maxNumberOfConservators, reapets);
     Evolution ev(simulationData, maxCost, maxNumberOfConservators, reapets, numOfIndividuals, numOfGenerations);

@@ -30,6 +30,8 @@ void Simulation::runSingleSimulation(SimulationData sd)
         events.push_back(sd.getDamageTime(i));
     }
 
+	int missingElement = -1;
+
     while(money > 0)
     {
         uint currentEvent = findLowestTimeIndex(events);
@@ -63,13 +65,14 @@ void Simulation::runSingleSimulation(SimulationData sd)
                 money -= repairTime * float(numberOfConservators);
                 totalTime += repairTime;
             } else {
+				missingElement = currentEvent;
                 money = 0.0f;
                 totalTime += money / float(numberOfConservators);
             }
         }
     }
 
-    results.push_back(SimulationResult(workingTime, totalTime));
+    results.push_back(SimulationResult(workingTime, totalTime, missingElement));
 }
 
 Simulation::Simulation(SimulationData sd, uint moneyForConservators, uint numberOfConservators, uint repeat)
@@ -105,17 +108,19 @@ Simulation& Simulation::operator= (const Simulation& s)
 SimulationResult Simulation::getAvaragedResult()
 {
     float sumWorkingTime = 0.0f;
-    float sumTotalTime = 0.0f;
+	float sumTotalTime = 0.0f;
+	int missingElement = -1;
 
     for(uint n=0; n<repeat; ++n)
     {
         runSingleSimulation(simulationData);
     }
 
-    std::for_each(results.begin(), results.end(), [&sumWorkingTime, &sumTotalTime] (SimulationResult v) {
+    std::for_each(results.begin(), results.end(), [&sumWorkingTime, &sumTotalTime, &missingElement] (SimulationResult v) {
         sumWorkingTime += v.workingTime;
         sumTotalTime += v.totalTime;
+		missingElement = v.missingElement;
     });
 
-    return SimulationResult(sumWorkingTime/float(repeat), sumTotalTime/float(repeat));
+    return SimulationResult(sumWorkingTime/float(repeat), sumTotalTime/float(repeat), missingElement);
 }
