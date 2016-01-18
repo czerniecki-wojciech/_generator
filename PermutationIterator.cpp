@@ -38,9 +38,6 @@ SimulationData PermutationIterator::nextPermutation()
         next += 1;
     }
 
-    std::cout << "getTotalElementsCost " << simulationData.getTotalElementsCost() << std::endl;
-    std::cout << simulationData;
-
 
     return this->simulationData;
 }

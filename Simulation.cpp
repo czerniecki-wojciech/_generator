@@ -48,22 +48,23 @@ void Simulation::runSingleSimulation(SimulationData sd)
             workingTime += timeToAdvance;
             totalTime += timeToAdvance;
 
-            float repairTime = sd.getRepairTime() / float(numberOfConservators);
-            if(repairTime * numberOfConservators <= money)
-            {
-                money -= repairTime * float(numberOfConservators);
-                totalTime += repairTime / float(numberOfConservators);
-            } else {
-                money = 0.0f;
-                totalTime += money / float(numberOfConservators);
-            }
-
             if(sd.isReplaceKitForElement(currentEvent))
             {
                 sd.takeReplaceKitForElement(currentEvent);
                 events.at(currentEvent) = sd.getDamageTime(currentEvent);
             } else {
+				money = 0.0f;
                 break;
+            }
+
+            float repairTime = sd.getRepairTime() / float(numberOfConservators);
+            if(repairTime * float(numberOfConservators) <= money)
+            {
+                money -= repairTime * float(numberOfConservators);
+                totalTime += repairTime;
+            } else {
+                money = 0.0f;
+                totalTime += money / float(numberOfConservators);
             }
         }
     }

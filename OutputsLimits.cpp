@@ -6,8 +6,8 @@ OutputsLimits::OutputsLimits(int shapeLimitMin, int shapeLimitMax, int scaleLimi
         throw MinMaxBoundLimitError();
     }
 
-    this->shapeLimit = std::make_pair<int, int>(int(shapeLimitMin), int(shapeLimitMax));
-    this->scaleLimit = std::make_pair<int, int>(int(scaleLimitMin), int(scaleLimitMax));
+    this->shapeLimit = std::make_pair<int&, int&>(int(shapeLimitMin), int(shapeLimitMax));
+    this->scaleLimit = std::make_pair<int&, int&>(int(scaleLimitMin), int(scaleLimitMax));
 }
 
 OutputsLimits::OutputsLimits(std::pair<int, int> shapeLimit, std::pair<int, int> scaleLimit)
