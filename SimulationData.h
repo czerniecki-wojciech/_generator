@@ -19,8 +19,11 @@ public:
     SimulationData(const SimulationData& sd);
     SimulationData& operator= (const SimulationData& sd);
 
+    uint getElementsNum();
     uint getTotalElementsCost();
     uint getTotalCostOfElement(uint num);
+    uint getNumberOfBackupsElemets(uint num);
+    float getDamageTime(uint num);
 
     bool isReplaceKitForElement(uint num);
     void takeReplaceKitForElement(uint num);

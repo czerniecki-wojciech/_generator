@@ -21,7 +21,7 @@ public:
 
     uint getCostOfBackupElements();
 
-    float getNextFailureTime();
+    float getNextDamageTime();
 
     void setNumberOfBackupsElemets(uint number);
     uint getNumberOfBackupsElemets();

@@ -9,7 +9,9 @@ SOURCES += main.cpp \
     OutputsLimits.cpp \
     SimulationData.cpp \
     RepairKitSet.cpp \
-    RepairKit.cpp
+    RepairKit.cpp \
+    PermutationIterator.cpp \
+    Simulation.cpp
 
 HEADERS += \
     myTypes.h \
@@ -20,5 +22,7 @@ HEADERS += \
     SimulationInputData.h \
     SimulationData.h \
     RepairKitSet.h \
-    RepairKit.h
+    RepairKit.h \
+    PermutationIterator.h \
+    Simulation.h
 

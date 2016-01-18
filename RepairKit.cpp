@@ -36,7 +36,7 @@ uint RepairKit::getCostOfBackupElements()
 }
 
 
-float RepairKit::getNextFailureTime()
+float RepairKit::getNextDamageTime()
 {
     return timeGenerator->operator ()(*(defaultRandomEngine));
 }

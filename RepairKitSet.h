@@ -19,8 +19,11 @@ public:
     RepairKitSet(const RepairKitSet& rks);
     RepairKitSet& operator=(const RepairKitSet& rks);
 
+    uint getElementsNum();
     uint getTotalElementsCost();
     uint getTotalCostOfElement(uint num);
+    uint getNumberOfBackupsElemets(uint num);
+    float getDamageTime(uint num);
 
     bool isReplaceKitForElement(uint num);
     void takeReplaceKitForElement(uint num);

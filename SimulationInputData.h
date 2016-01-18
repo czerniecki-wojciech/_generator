@@ -11,8 +11,8 @@
 class SimulationInputData {
 private:
 
-    friend std::ostream& operator<< (std::ostream& ostream, SimulationInputData* sd) {
-        std::for_each(sd->elements.begin(), sd->elements.end(), [&ostream](Element& element) {
+    friend std::ostream& operator<< (std::ostream& ostream, SimulationInputData& sd) {
+        std::for_each(sd.elements.begin(), sd.elements.end(), [&ostream](Element& element) {
             ostream << element;
         });
         return ostream;
@@ -33,15 +33,12 @@ public:
         ,elements(sid.elements.size())
     {
         std::copy(sid.elements.begin(), sid.elements.end(), this->elements.begin());
-        std::cout << "A" << this->elements.size();
-        std::cout << "Asid" << sid.elements.size();
     }
 
     SimulationInputData& operator= (const SimulationInputData& sid)
     {
         this->elements = sid.elements;
         this->elementsNum = sid.elementsNum;
-        std::cout << "B";
 
         return *this;
     }

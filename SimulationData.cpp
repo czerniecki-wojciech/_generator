@@ -24,13 +24,18 @@ SimulationData& SimulationData::operator= (const SimulationData& sd)
 }
 
 std::ostream& operator<< (std::ostream& ostream, SimulationData& sd) {
-    std::for_each(sd.elements.begin(), sd.elements.end(), [&ostream](Element& element) {
+    /*std::for_each(sd.elements.begin(), sd.elements.end(), [&ostream](Element& element) {
         ostream << element;
-    });
+    });*/
 
     ostream << sd.repairKitSet << std::endl;
 
     return ostream;
+}
+
+uint SimulationData::getElementsNum()
+{
+    return repairKitSet.getElementsNum();
 }
 
 uint SimulationData::getTotalElementsCost()
@@ -40,6 +45,14 @@ uint SimulationData::getTotalElementsCost()
 
 uint SimulationData::getTotalCostOfElement(uint num) {
     return repairKitSet.getTotalCostOfElement(num);
+}
+
+uint SimulationData::getNumberOfBackupsElemets(uint num) {
+    return repairKitSet.getNumberOfBackupsElemets(num);
+}
+
+float SimulationData::getDamageTime(uint num) {
+    return repairKitSet.getDamageTime(num);
 }
 
 bool SimulationData::isReplaceKitForElement(uint num) {

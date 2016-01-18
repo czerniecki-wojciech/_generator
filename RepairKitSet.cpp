@@ -27,6 +27,11 @@ std::ostream& operator<< (std::ostream& ostream, RepairKitSet& repairKidSet) {
     return ostream;
 }
 
+uint RepairKitSet::getElementsNum()
+{
+    return repairKits.size();
+}
+
 uint RepairKitSet::getTotalElementsCost() {
     uint totalCost = 0;
 
@@ -35,6 +40,16 @@ uint RepairKitSet::getTotalElementsCost() {
     });
 
     return totalCost;
+}
+
+uint RepairKitSet::getNumberOfBackupsElemets(uint num)
+{
+    return repairKits.at(num).getNumberOfBackupsElemets();
+}
+
+float RepairKitSet::getDamageTime(uint num)
+{
+    return repairKits.at(num).getNextDamageTime();
 }
 
 bool RepairKitSet::isReplaceKitForElement(uint num) {
