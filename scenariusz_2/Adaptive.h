@@ -1,6 +1,9 @@
 #ifndef ADAPTIVE_H
 #define ADAPTIVE_H
 
+#include <algorithm>
+#include <numeric>
+
 #include "SimulationData.h"
 #include "SimulationResult.h"
 #include "Simulation.h"

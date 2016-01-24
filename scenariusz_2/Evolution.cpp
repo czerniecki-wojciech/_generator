@@ -80,21 +80,24 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
         }
     }
 
-    std::cout << "Best working time: " << bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators-1).at(indexBestWorkingTime).first.workingTime << std::endl;
+	float workingTime = bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators - 1).at(indexBestWorkingTime).first.workingTime;
+	float totalTime = bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators - 1).at(indexBestWorkingTime).first.totalTime;
+
+	std::cout << "============================================================" << std::endl;
+	std::cout << "Evolution(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", reapets=" << reapets << ", individuals=" << individuals << ", generations=" << generations << ")" << std::endl;
+	std::cout << "============================================================" << std::endl;
+
+	std::cout << "Best working time: " << workingTime << "(" << workingTime << "/" << totalTime << ") [" << workingTime / totalTime * 100 << "%]" << std::endl;
     std::cout << "Numebr of conservators: " << bestWorkingTimeNumOfConservators << std::endl;
     std::cout << "SimulationData:" << std::endl;
     std::cout << bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators-1).at(indexBestWorkingTime).second << std::endl;
 
-    std::cout << "Best total time: " << bruteforceByNumOfConservators.at(bestTotalTimeNumOfConservators - 1).at(indexBestTotalTime).first.totalTime << std::endl;
+	workingTime = bruteforceByNumOfConservators.at(bestTotalTimeNumOfConservators - 1).at(indexBestTotalTime).first.workingTime;
+	totalTime = bruteforceByNumOfConservators.at(bestTotalTimeNumOfConservators - 1).at(indexBestTotalTime).first.totalTime;
+
+	std::cout << "Best total time: " << totalTime << "(" << workingTime << "/" << totalTime << ") [" << workingTime / totalTime * 100 << "%]" << std::endl;
     std::cout << "Numebr of conservators: " << bestTotalTimeNumOfConservators << std::endl;
     std::cout << "SimulationData:" << std::endl;
     std::cout << bruteforceByNumOfConservators.at(bestTotalTimeNumOfConservators - 1).at(indexBestTotalTime).second << std::endl;
-
-    float first = bruteforceByNumOfConservators.at(bestPercentOfWorkingTimeNumOfConservators - 1).at(indexBestPercentOfWorkingTime).first.workingTime;
-    float second = bruteforceByNumOfConservators.at(bestPercentOfWorkingTimeNumOfConservators - 1).at(indexBestPercentOfWorkingTime).first.totalTime;
-
-    std::cout << "Best percent of working time: " << first / second * 100.0f << "% (" << first << "/" << second << ")" << std::endl;
-    std::cout << "Numebr of conservators: " << bestPercentOfWorkingTimeNumOfConservators << std::endl;
-    std::cout << "SimulationData:" << std::endl;
-    std::cout << bruteforceByNumOfConservators.at(bestPercentOfWorkingTimeNumOfConservators - 1).at(indexBestPercentOfWorkingTime).second << std::endl;
+	std::cout << "============================================================" << std::endl;
 }

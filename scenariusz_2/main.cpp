@@ -6,6 +6,7 @@
 #include "Simulation.h"
 #include "BruteForce.h"
 #include "Evolution.h"
+#include "Adaptive.h"
 
 using namespace std;
 
@@ -30,15 +31,18 @@ int main()
 
     cout << simulationInputData;
 
-    uint maxCost = 100;
+    uint maxCost = 50;
     uint maxNumberOfConservators = 3;
-    uint reapets = 10;
+    uint reapets = 100;
 
-    uint numOfIndividuals = 50;
-    uint numOfGenerations = 50;
+    uint numOfIndividuals = 10;
+    uint numOfGenerations = 10;
 
     BruteForce bf(simulationData, maxCost, maxNumberOfConservators, reapets);
     Evolution ev(simulationData, maxCost, maxNumberOfConservators, reapets, numOfIndividuals, numOfGenerations);
+	Adaptive ad(simulationData, maxCost, maxNumberOfConservators, reapets);
+
+	system("pause");
 
     return 0;
 }

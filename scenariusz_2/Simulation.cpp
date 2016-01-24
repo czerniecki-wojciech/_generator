@@ -55,6 +55,7 @@ void Simulation::runSingleSimulation(SimulationData sd)
                 sd.takeReplaceKitForElement(currentEvent);
                 events.at(currentEvent) = sd.getDamageTime(currentEvent);
             } else {
+				missingElement = currentEvent;
 				money = 0.0f;
                 break;
             }
@@ -65,7 +66,6 @@ void Simulation::runSingleSimulation(SimulationData sd)
                 money -= repairTime * float(numberOfConservators);
                 totalTime += repairTime;
             } else {
-				missingElement = currentEvent;
                 money = 0.0f;
                 totalTime += money / float(numberOfConservators);
             }
