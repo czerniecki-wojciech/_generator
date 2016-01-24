@@ -2,6 +2,7 @@
 #define ADAPTIVE_H
 
 #include <algorithm>
+#include <chrono>
 #include <numeric>
 
 #include "SimulationData.h"

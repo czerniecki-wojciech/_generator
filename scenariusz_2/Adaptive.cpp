@@ -4,6 +4,9 @@
 
 Adaptive::Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets)
 {
+	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
+	long counter = 0;
 	/*std::pair<SimulationData, SimulationResult> bestWorkingTime = std::make_pair(simulationData, SimulationResult());
 	std::pair<SimulationData, SimulationResult> bestTotalTime = std::make_pair(simulationData, SimulationResult());*/
 	std::vector<std::pair<SimulationResult, SimulationData>> bestAvarageResultsByNumberOfConservator;
@@ -12,7 +15,6 @@ Adaptive::Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOf
     {
         SimulationData sd(simulationData);
 
-		long counter = 0;
         while(sd.getTotalElementsCost() <= maxCost)
         {
             std::vector<SimulationResult> results;
@@ -64,7 +66,6 @@ Adaptive::Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOf
 				break;
 			}
         }
-		std::cout << "counter = " << counter << std::endl;
     }
 
     /*
@@ -106,12 +107,16 @@ Adaptive::Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOf
             bestTotalTimeNumOfConservators = numOfConservators;
         }
     }
+	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
 	float workingTime = bestAvarageResultsByNumberOfConservator.at(bestWorkingTimeNumOfConservators - 1).first.workingTime;
 	float totalTime = bestAvarageResultsByNumberOfConservator.at(bestWorkingTimeNumOfConservators - 1).first.totalTime;
 
 	std::cout << "============================================================" << std::endl;
 	std::cout << "Adaptive(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", repets=" << repets << ")" << std::endl;
+	std::cout << "============================================================" << std::endl;
+	std::cout << "Total checked combinations = " << counter << std::endl;
+	std::cout << "Time elapsed = " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms" << std::endl;
 	std::cout << "============================================================" << std::endl;
 
     std::cout << "Best working time: " << workingTime << "(" << workingTime << "/" << totalTime << ") [" << workingTime/totalTime * 100 << "%]" << std::endl;

@@ -8,11 +8,11 @@
 class OutputsLimits
 {
 public:
-    std::pair<int, int> shapeLimit;
-    std::pair<int, int> scaleLimit;
+    std::pair<float, float> shapeLimit;
+    std::pair<float, float> scaleLimit;
 
-    OutputsLimits(int shapeLimitMin, int shapeLimitMax, int scaleLimitMin, int scaleLimitMax);
-    OutputsLimits(std::pair<int, int> shapeLimit, std::pair<int, int> scaleLimit);
+    OutputsLimits(float shapeLimitMin, float shapeLimitMax, float scaleLimitMin, float scaleLimitMax);
+    OutputsLimits(std::pair<float, float> shapeLimit, std::pair<float, float> scaleLimit);
     OutputsLimits(const OutputsLimits& ol);
     OutputsLimits& operator= (const OutputsLimits&);
 };

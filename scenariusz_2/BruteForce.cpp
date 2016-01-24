@@ -2,13 +2,15 @@
 
 BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets)
 {
+	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
+	long counter = 0;
+
     std::vector<std::vector<std::pair<SimulationResult, SimulationData>>> bruteforceByNumOfConservators;
     for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
     {
         bruteforceByNumOfConservators.push_back(std::vector<std::pair<SimulationResult, SimulationData>>());
     }
-
-	long counter = 0;
 
     PermutationIterator pi(simulationData, maxCost);
     while(pi.get().getTotalElementsCost() <= maxCost)
@@ -19,12 +21,10 @@ BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumb
             bruteforceByNumOfConservators.at(numOfConservators-1)
                     .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
                                                                            pi.get()));
+			++counter;
         }
-		++counter;
         ++pi;
     }
-
-	std::cout << "counter = " << counter << std::endl;
 
     float bestWorkingTime = 0;
     float bestTotalTime = 0;
@@ -59,11 +59,16 @@ BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumb
         }
     }
 
+	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
 	float workingTime = bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators - 1).at(indexBestWorkingTime).first.workingTime;
 	float totalTime = bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators - 1).at(indexBestWorkingTime).first.totalTime;
 
 	std::cout << "============================================================" << std::endl;
 	std::cout << "BruteForce(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", repets=" << repets << ")" << std::endl;
+	std::cout << "============================================================" << std::endl;
+	std::cout << "Total checked combinations = " << counter << std::endl;
+	std::cout << "Time elapsed = " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms" << std::endl;
 	std::cout << "============================================================" << std::endl;
 
 	std::cout << "Best working time: " << workingTime << "(" << workingTime << "/" << totalTime << ") [" << workingTime / totalTime * 100 << "%]" << std::endl;

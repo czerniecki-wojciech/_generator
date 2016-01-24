@@ -2,6 +2,10 @@
 
 Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets, uint individuals, uint generations)
 {
+	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
+	long counter = 0;
+
     std::vector<std::vector<std::pair<SimulationResult, SimulationData>>> bruteforceByNumOfConservators;
     for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
     {
@@ -31,7 +35,6 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
 
 	for (uint numOfConservators = 1; numOfConservators <= maxNumberOfConservators; ++numOfConservators)
 	{
-		long counter = 0;
 		//create population
 		for (uint i = 0; i < individuals; ++i)
 		{
@@ -81,7 +84,6 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
 				}
 			}
 		}
-		std::cout << "counter = " << counter << std::endl;
 
 		sdVector.clear(); //clear individuals for another number of conservators
 	}
@@ -128,12 +130,16 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
             }
         }
     }
+	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
 	float workingTime = bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators - 1).at(indexBestWorkingTime).first.workingTime;
 	float totalTime = bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators - 1).at(indexBestWorkingTime).first.totalTime;
 
 	std::cout << "============================================================" << std::endl;
 	std::cout << "Evolution(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", repets=" << repets << ", individuals=" << individuals << ", generations=" << generations << ")" << std::endl;
+	std::cout << "============================================================" << std::endl;
+	std::cout << "Total checked combinations = " << counter << std::endl;
+	std::cout << "Time elapsed = " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms" << std::endl;
 	std::cout << "============================================================" << std::endl;
 
 	std::cout << "Best working time: " << workingTime << "(" << workingTime << "/" << totalTime << ") [" << workingTime / totalTime * 100 << "%]" << std::endl;

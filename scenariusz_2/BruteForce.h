@@ -1,6 +1,8 @@
 #ifndef BRUTEFORCE_H
 #define BRUTEFORCE_H
 
+#include <chrono>
+
 #include "SimulationData.h"
 #include "SimulationResult.h"
 #include "PermutationIterator.h"

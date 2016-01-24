@@ -1,0 +1,19 @@
+#max cost
+50
+#max number of conservators
+3
+#conservator weibull limits (shape_min, shape_max, scale_min, scale_max)
+1
+10
+1
+10
+#number of elements
+4
+#elements weibull limits (shape_min, shape_max, scale_min, scale_max)
+1
+10
+1
+10
+#element price limits
+1
+10
