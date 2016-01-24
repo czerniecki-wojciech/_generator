@@ -1,6 +1,6 @@
 #include "Evolution.h"
 
-Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint reapets, uint individuals, uint generations)
+Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets, uint individuals, uint generations)
 {
     std::vector<std::vector<std::pair<SimulationResult, SimulationData>>> bruteforceByNumOfConservators;
     for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
@@ -14,7 +14,7 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
     {
         for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
         {
-            Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, reapets);
+            Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, repets);
             bruteforceByNumOfConservators.at(numOfConservators-1)
                     .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
                                                                            pi.get()));
@@ -24,18 +24,67 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
 
 
     PermutationGenerator pg(simulationData, maxCost);
+	PermutationModificator pm(maxCost);
 
-    for(uint i=0; i<generations * individuals; ++i)
-    {
-        for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
-        {
-            SimulationData sd = ++pg;
-            Simulation simulation(sd, maxCost - sd.getTotalElementsCost(), numOfConservators, reapets);
-            bruteforceByNumOfConservators.at(numOfConservators-1)
-                    .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
-                                                                           sd));
-        }
-    }
+	std::vector<SimulationData> sdVector;
+
+
+	for (uint numOfConservators = 1; numOfConservators <= maxNumberOfConservators; ++numOfConservators)
+	{
+		long counter = 0;
+		//create population
+		for (uint i = 0; i < individuals; ++i)
+		{
+			sdVector.push_back(++pg);
+		}
+
+		for (uint generation = 0; generation < generations; ++generation)
+		{
+			bruteforceByNumOfConservators.at(numOfConservators - 1).clear(); //clear results at beggining of every generations
+
+			for (uint i = 0; i < individuals; ++i) //test every individual
+			{
+				Simulation simulation(sdVector.at(i), maxCost - sdVector.at(i).getTotalElementsCost(), numOfConservators, repets);
+				
+				bruteforceByNumOfConservators.at(numOfConservators - 1)
+					.push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
+						sdVector.at(i)));
+				++counter;
+			}
+
+			//find best one
+			float bestWorkingTime = 0.0f;
+			float bestTotalTime = 0.0f;
+
+			std::for_each(bruteforceByNumOfConservators.at(numOfConservators - 1).begin(), 
+				bruteforceByNumOfConservators.at(numOfConservators - 1).end(), 
+				[&bestWorkingTime, &bestTotalTime](std::pair<SimulationResult, SimulationData> result) {
+				if (result.first.workingTime > bestWorkingTime)
+					bestWorkingTime = result.first.workingTime;
+				if (result.first.totalTime > bestTotalTime)
+					bestTotalTime = result.first.totalTime;
+			});
+
+			//create or modify rest
+			for (uint i = 0; i < individuals; ++i)
+			{
+				if (bruteforceByNumOfConservators.at(numOfConservators - 1).at(i).first.workingTime != bestWorkingTime
+					&& bruteforceByNumOfConservators.at(numOfConservators - 1).at(i).first.totalTime != bestTotalTime)
+				{
+					if (bruteforceByNumOfConservators.at(numOfConservators - 1).at(i).first.workingTime < bestWorkingTime / 2) //new individual
+					{
+						sdVector.at(i) = ++pg;
+					}
+					else { //modify individual (something like mutation)
+						sdVector.at(i) = pm.modifyPermutation(sdVector.at(i));
+					}
+				}
+			}
+		}
+		std::cout << "counter = " << counter << std::endl;
+
+		sdVector.clear(); //clear individuals for another number of conservators
+	}
 
     float bestWorkingTime = 0;
     float bestTotalTime = 0;
@@ -84,7 +133,7 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
 	float totalTime = bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators - 1).at(indexBestWorkingTime).first.totalTime;
 
 	std::cout << "============================================================" << std::endl;
-	std::cout << "Evolution(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", reapets=" << reapets << ", individuals=" << individuals << ", generations=" << generations << ")" << std::endl;
+	std::cout << "Evolution(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", repets=" << repets << ", individuals=" << individuals << ", generations=" << generations << ")" << std::endl;
 	std::cout << "============================================================" << std::endl;
 
 	std::cout << "Best working time: " << workingTime << "(" << workingTime << "/" << totalTime << ") [" << workingTime / totalTime * 100 << "%]" << std::endl;

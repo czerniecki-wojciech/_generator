@@ -2,7 +2,7 @@
 
 
 
-Adaptive::Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint reapets)
+Adaptive::Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets)
 {
 	/*std::pair<SimulationData, SimulationResult> bestWorkingTime = std::make_pair(simulationData, SimulationResult());
 	std::pair<SimulationData, SimulationResult> bestTotalTime = std::make_pair(simulationData, SimulationResult());*/
@@ -12,14 +12,16 @@ Adaptive::Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOf
     {
         SimulationData sd(simulationData);
 
+		long counter = 0;
         while(sd.getTotalElementsCost() <= maxCost)
         {
             std::vector<SimulationResult> results;
-            for(uint i=0; i<reapets; ++i)
+            for(uint i=0; i<repets; ++i)
             {
                 Simulation simulation(sd, maxCost - sd.getTotalElementsCost(), numOfConservators, 1);
                 results.push_back(simulation.getAvaragedResult());
             }
+			++counter;
 
 			uint failsDueToConservatorOutOfMoney = 0;
 			std::vector<int> failsDueToMissingOfElements;
@@ -62,6 +64,7 @@ Adaptive::Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOf
 				break;
 			}
         }
+		std::cout << "counter = " << counter << std::endl;
     }
 
     /*
@@ -70,7 +73,7 @@ Adaptive::Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOf
     {
         for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
         {
-            Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, reapets);
+            Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, repets);
             bruteforceByNumOfConservators.at(numOfConservators-1)
                     .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
                                                                            pi.get()));
@@ -108,7 +111,7 @@ Adaptive::Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOf
 	float totalTime = bestAvarageResultsByNumberOfConservator.at(bestWorkingTimeNumOfConservators - 1).first.totalTime;
 
 	std::cout << "============================================================" << std::endl;
-	std::cout << "Adaptive(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", reapets=" << reapets << ")" << std::endl;
+	std::cout << "Adaptive(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", repets=" << repets << ")" << std::endl;
 	std::cout << "============================================================" << std::endl;
 
     std::cout << "Best working time: " << workingTime << "(" << workingTime << "/" << totalTime << ") [" << workingTime/totalTime * 100 << "%]" << std::endl;

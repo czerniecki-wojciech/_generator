@@ -5,13 +5,14 @@
 #include "SimulationData.h"
 #include "SimulationResult.h"
 #include "PermutationGenerator.h"
+#include "PermutationModificator.h"
 #include "Simulation.h"
 
 
 class Evolution
 {
 public:
-    Evolution(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint reapets, uint individuals, uint generations);
+    Evolution(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets, uint individuals, uint generations);
 };
 
 #endif // EVOLUTION_H

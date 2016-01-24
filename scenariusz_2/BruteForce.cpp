@@ -1,6 +1,6 @@
 #include "BruteForce.h"
 
-BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint reapets)
+BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets)
 {
     std::vector<std::vector<std::pair<SimulationResult, SimulationData>>> bruteforceByNumOfConservators;
     for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
@@ -8,18 +8,23 @@ BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumb
         bruteforceByNumOfConservators.push_back(std::vector<std::pair<SimulationResult, SimulationData>>());
     }
 
+	long counter = 0;
+
     PermutationIterator pi(simulationData, maxCost);
     while(pi.get().getTotalElementsCost() <= maxCost)
     {
         for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
         {
-            Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, reapets);
+            Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, repets);
             bruteforceByNumOfConservators.at(numOfConservators-1)
                     .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
                                                                            pi.get()));
         }
+		++counter;
         ++pi;
     }
+
+	std::cout << "counter = " << counter << std::endl;
 
     float bestWorkingTime = 0;
     float bestTotalTime = 0;
@@ -58,7 +63,7 @@ BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumb
 	float totalTime = bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators - 1).at(indexBestWorkingTime).first.totalTime;
 
 	std::cout << "============================================================" << std::endl;
-	std::cout << "BruteForce(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", reapets=" << reapets << ")" << std::endl;
+	std::cout << "BruteForce(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", repets=" << repets << ")" << std::endl;
 	std::cout << "============================================================" << std::endl;
 
 	std::cout << "Best working time: " << workingTime << "(" << workingTime << "/" << totalTime << ") [" << workingTime / totalTime * 100 << "%]" << std::endl;

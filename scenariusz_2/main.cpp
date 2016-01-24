@@ -6,6 +6,7 @@
 #include "Simulation.h"
 #include "BruteForce.h"
 #include "Evolution.h"
+#include "EvolutionHelper.h"
 #include "Adaptive.h"
 
 using namespace std;
@@ -20,7 +21,7 @@ int main()
     std::shared_ptr<OutputsLimits> outputsLimits = std::make_shared<OutputsLimits>(shapeLimit, scaleLimit);
     std::shared_ptr<ConservatorLimits> conservatorLimits = std::make_shared<ConservatorLimits>(shapeLimit, scaleLimit);
 
-    SimulationInputDataGenerator generator(3, outputsLimits, priceLimit, conservatorLimits);
+    SimulationInputDataGenerator generator(4, outputsLimits, priceLimit, conservatorLimits);
     SimulationInputData simulationInputData = generator.generate();
 
     //simulator
@@ -33,14 +34,16 @@ int main()
 
     uint maxCost = 50;
     uint maxNumberOfConservators = 3;
-    uint reapets = 100;
+    uint repets = 100;
 
-    uint numOfIndividuals = 10;
-    uint numOfGenerations = 10;
+	EvolutionHelper eh(maxCost, simulationData);
 
-    BruteForce bf(simulationData, maxCost, maxNumberOfConservators, reapets);
-    Evolution ev(simulationData, maxCost, maxNumberOfConservators, reapets, numOfIndividuals, numOfGenerations);
-	Adaptive ad(simulationData, maxCost, maxNumberOfConservators, reapets);
+    uint numOfIndividuals = eh.getIndividualsNum();
+    uint numOfGenerations = eh.getGenerationNum();
+
+    BruteForce bf(simulationData, maxCost, maxNumberOfConservators, repets);
+    Evolution ev(simulationData, maxCost, maxNumberOfConservators, repets, numOfIndividuals, numOfGenerations);
+	Adaptive ad(simulationData, maxCost, maxNumberOfConservators, repets);
 
 	system("pause");
 
