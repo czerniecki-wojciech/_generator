@@ -11,7 +11,7 @@
 class BruteForce
 {
 public:
-    BruteForce(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets);
+    BruteForce(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repeats);
 };
 
 #endif // BRUTEFORCE_H

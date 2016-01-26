@@ -14,7 +14,7 @@ public:
 	char* generatorInputFile_file;
 	bool simulationInputFile = false;	
 	char* simulationInputFile_file;
-	uint repets = 1;
+	uint repeats = 1;
 	char outputFile = false;
 	char* outputFile_file;
 

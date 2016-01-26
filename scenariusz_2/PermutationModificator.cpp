@@ -28,7 +28,8 @@ SimulationData PermutationModificator::modifyPermutation(SimulationData& simulat
 		uint elementIndex = rand() % elementsNum;
 		uint add = rand() % 2;
 		uint repairKitsForElement = sd.getNumberOfBackupsElemets(elementIndex);
-		if (add) {
+		if (add)
+		{
 			sd.setNumOfReplaceKitForElement(elementIndex, repairKitsForElement + 1);
 		}
 		else if(repairKitsForElement) {

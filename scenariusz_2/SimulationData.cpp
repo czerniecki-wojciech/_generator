@@ -24,11 +24,8 @@ SimulationData& SimulationData::operator= (const SimulationData& sd)
     return *this;
 }
 
-std::ostream& operator<< (std::ostream& ostream, SimulationData& sd) {
-    /*std::for_each(sd.elements.begin(), sd.elements.end(), [&ostream](Element& element) {
-        ostream << element;
-    });*/
-
+std::ostream& operator<< (std::ostream& ostream, SimulationData& sd)
+{
     ostream << sd.repairKitSet << std::endl;
 
     return ostream;
@@ -44,30 +41,37 @@ uint SimulationData::getTotalElementsCost()
     return repairKitSet.getTotalElementsCost();
 }
 
-uint SimulationData::getTotalCostOfElement(uint num) {
+uint SimulationData::getTotalCostOfElement(uint num)
+{
     return repairKitSet.getTotalCostOfElement(num);
 }
 
-uint SimulationData::getNumberOfBackupsElemets(uint num) {
+uint SimulationData::getNumberOfBackupsElemets(uint num)
+{
     return repairKitSet.getNumberOfBackupsElemets(num);
 }
 
-float SimulationData::getDamageTime(uint num) {
+float SimulationData::getDamageTime(uint num)
+{
     return repairKitSet.getDamageTime(num);
 }
 
-float SimulationData::getRepairTime() {
+float SimulationData::getRepairTime()
+{
     return conservator.getRepairTime();
 }
 
-bool SimulationData::isReplaceKitForElement(uint num) {
+bool SimulationData::isReplaceKitForElement(uint num)
+{
     return repairKitSet.isReplaceKitForElement(num);
 }
 
-void SimulationData::takeReplaceKitForElement(uint num) {
+void SimulationData::takeReplaceKitForElement(uint num)
+{
     repairKitSet.takeReplaceKitForElement(num);
 }
 
-void SimulationData::setNumOfReplaceKitForElement(uint num, uint elementsNum) {
+void SimulationData::setNumOfReplaceKitForElement(uint num, uint elementsNum)
+{
     repairKitSet.setNumOfReplaceKitForElement(num, elementsNum);
 }

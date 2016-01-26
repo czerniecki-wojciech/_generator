@@ -35,11 +35,11 @@ CommandLineParser::CommandLineParser(int argc, char * argv[])
 
 			simulationInputFile_file = argv[currentInput];
 		}
-		else if (strcmp(argv[currentInput], "--repets") == 0)
+		else if (strcmp(argv[currentInput], "--repeats") == 0)
 		{
 			++currentInput;
 
-			repets = atoi(argv[currentInput]);
+			repeats = atoi(argv[currentInput]);
 		}
 		else if (strcmp(argv[currentInput], "--outputFile") == 0)
 		{

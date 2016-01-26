@@ -1,6 +1,7 @@
 #include "Simulation.h"
 
-uint Simulation::findLowestTimeIndex(std::vector<float>& events) {
+uint Simulation::findLowestTimeIndex(std::vector<float>& events) 
+{
     float lowest = std::numeric_limits<float>::max();
     uint index = 0;
 
@@ -37,39 +38,43 @@ void Simulation::runSingleSimulation(SimulationData sd)
         uint currentEvent = findLowestTimeIndex(events);
         float timeToAdvance = events.at(currentEvent);
 
-        if(timeToAdvance * float(numberOfConservators) >= money) {
+        if(timeToAdvance * float(numberOfConservators) >= money)
+		{
             workingTime += money / float(numberOfConservators);
             totalTime += money / float(numberOfConservators);
             money = 0;
-        } else {
-            for(uint i=0; i<events.size(); ++i)
-            {
-                events.at(i) = events.at(i) - timeToAdvance;
-            }
-            money -= timeToAdvance * float(numberOfConservators);
-            workingTime += timeToAdvance;
-            totalTime += timeToAdvance;
+		}
+		else {
+			for (uint i = 0; i < events.size(); ++i)
+			{
+				events.at(i) = events.at(i) - timeToAdvance;
+			}
+			money -= timeToAdvance * float(numberOfConservators);
+			workingTime += timeToAdvance;
+			totalTime += timeToAdvance;
 
-            if(sd.isReplaceKitForElement(currentEvent))
-            {
-                sd.takeReplaceKitForElement(currentEvent);
-                events.at(currentEvent) = sd.getDamageTime(currentEvent);
-            } else {
+			if (sd.isReplaceKitForElement(currentEvent))
+			{
+				sd.takeReplaceKitForElement(currentEvent);
+				events.at(currentEvent) = sd.getDamageTime(currentEvent);
+			}
+			else {
 				missingElement = currentEvent;
 				money = 0.0f;
-                break;
-            }
+				break;
+			}
 
-            float repairTime = sd.getRepairTime() / float(numberOfConservators);
-            if(repairTime * float(numberOfConservators) <= money)
-            {
-                money -= repairTime * float(numberOfConservators);
-                totalTime += repairTime;
-            } else {
-                money = 0.0f;
-                totalTime += money / float(numberOfConservators);
-            }
-        }
+			float repairTime = sd.getRepairTime() / float(numberOfConservators);
+			if (repairTime * float(numberOfConservators) <= money)
+			{
+				money -= repairTime * float(numberOfConservators);
+				totalTime += repairTime;
+			}
+			else {
+				money = 0.0f;
+				totalTime += money / float(numberOfConservators);
+			}
+		}
     }
 
     results.push_back(SimulationResult(workingTime, totalTime, missingElement));
@@ -116,7 +121,8 @@ SimulationResult Simulation::getAvaragedResult()
         runSingleSimulation(simulationData);
     }
 
-    std::for_each(results.begin(), results.end(), [&sumWorkingTime, &sumTotalTime, &missingElement] (SimulationResult v) {
+    std::for_each(results.begin(), results.end(), [&sumWorkingTime, &sumTotalTime, &missingElement] (SimulationResult v)
+	{
         sumWorkingTime += v.workingTime;
         sumTotalTime += v.totalTime;
 		missingElement = v.missingElement;

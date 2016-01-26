@@ -4,9 +4,11 @@
 #include "myTypes.h"
 #include <iostream>
 
-class Element {
+class Element 
+{
 private:
-    friend std::ostream& operator<<(std::ostream& ostream, const Element& e) {
+    friend std::ostream& operator<<(std::ostream& ostream, const Element& e) 
+	{
         ostream << "Element (shape: " << e.shape << ", scale: " << e.scale << ", price: " << e.price << ")" << std::endl;
         return ostream;
     }

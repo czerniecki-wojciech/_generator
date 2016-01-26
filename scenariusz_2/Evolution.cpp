@@ -1,6 +1,6 @@
 #include "Evolution.h"
 
-Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets, uint individuals, uint generations)
+Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repeats, uint individuals, uint generations)
 {
 	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
@@ -11,21 +11,6 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
     {
         bruteforceByNumOfConservators.push_back(std::vector<std::pair<SimulationResult, SimulationData>>());
     }
-
-    /*
-     * PermutationIterator pi(simulationData, maxCost);
-    while(pi.get().getTotalElementsCost() <= maxCost)
-    {
-        for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
-        {
-            Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, repets);
-            bruteforceByNumOfConservators.at(numOfConservators-1)
-                    .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
-                                                                           pi.get()));
-        }
-        ++pi;
-    }*/
-
 
     PermutationGenerator pg(simulationData, maxCost);
 	PermutationModificator pm(maxCost);
@@ -47,7 +32,7 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
 
 			for (uint i = 0; i < individuals; ++i) //test every individual
 			{
-				Simulation simulation(sdVector.at(i), maxCost - sdVector.at(i).getTotalElementsCost(), numOfConservators, repets);
+				Simulation simulation(sdVector.at(i), maxCost - sdVector.at(i).getTotalElementsCost(), numOfConservators, repeats);
 				
 				bruteforceByNumOfConservators.at(numOfConservators - 1)
 					.push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
@@ -136,7 +121,7 @@ Evolution::Evolution(SimulationData simulationData, uint maxCost, uint maxNumber
 	float totalTime = bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators - 1).at(indexBestWorkingTime).first.totalTime;
 
 	std::cout << "============================================================" << std::endl;
-	std::cout << "Evolution(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", repets=" << repets << ", individuals=" << individuals << ", generations=" << generations << ")" << std::endl;
+	std::cout << "Evolution(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", repeats=" << repeats << ", individuals=" << individuals << ", generations=" << generations << ")" << std::endl;
 	std::cout << "============================================================" << std::endl;
 	std::cout << "Total checked combinations = " << counter << std::endl;
 	std::cout << "Time elapsed = " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms" << std::endl;

@@ -12,7 +12,7 @@
 class Adaptive
 {
 public:
-    Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets);
+    Adaptive(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repeats);
 };
 
 #endif // ADAPTIVE_H

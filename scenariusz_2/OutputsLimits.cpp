@@ -2,7 +2,8 @@
 
 OutputsLimits::OutputsLimits(float shapeLimitMin, float shapeLimitMax, float scaleLimitMin, float scaleLimitMax)
 {
-    if(shapeLimitMin >= shapeLimitMax || scaleLimitMin >= scaleLimitMax) {
+    if(shapeLimitMin >= shapeLimitMax || scaleLimitMin >= scaleLimitMax) 
+	{
         throw MinMaxBoundLimitError();
     }
 
@@ -12,7 +13,8 @@ OutputsLimits::OutputsLimits(float shapeLimitMin, float shapeLimitMax, float sca
 
 OutputsLimits::OutputsLimits(std::pair<float, float> shapeLimit, std::pair<float, float> scaleLimit)
 {
-    if(shapeLimit.first >= shapeLimit.second || scaleLimit.first >= scaleLimit.second) {
+    if(shapeLimit.first >= shapeLimit.second || scaleLimit.first >= scaleLimit.second) 
+	{
         throw MinMaxBoundLimitError();
     }
 

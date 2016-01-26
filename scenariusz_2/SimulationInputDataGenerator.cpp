@@ -75,7 +75,8 @@ SimulationInputDataGenerator::SimulationInputDataGenerator(uint elementsNum, std
     std::srand(std::time(0));
 }
 
-SimulationInputData SimulationInputDataGenerator::generate() {
+SimulationInputData SimulationInputDataGenerator::generate()
+{
     SimulationInputData simulationData(this->elementsNum, this->maxCost, this->maxNumberOfConservators);
     simulationData.erase();
 

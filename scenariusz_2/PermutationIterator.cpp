@@ -10,7 +10,8 @@ PermutationIterator::PermutationIterator(const PermutationIterator& pi)
     ,maxCost(pi.maxCost)
 {}
 
-PermutationIterator& PermutationIterator::operator= (const PermutationIterator& pi) {
+PermutationIterator& PermutationIterator::operator= (const PermutationIterator& pi)
+{
     this->simulationData = pi.simulationData;
     this->maxCost = pi.maxCost;
 

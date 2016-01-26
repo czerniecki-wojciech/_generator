@@ -1,6 +1,6 @@
 #include "BruteForce.h"
 
-BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets)
+BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repeats)
 {
 	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
@@ -17,7 +17,7 @@ BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumb
     {
         for(uint numOfConservators=1; numOfConservators<=maxNumberOfConservators; ++numOfConservators)
         {
-            Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, repets);
+            Simulation simulation(pi.get(), maxCost - pi.get().getTotalElementsCost(), numOfConservators, repeats);
             bruteforceByNumOfConservators.at(numOfConservators-1)
                     .push_back(std::pair<SimulationResult, SimulationData>(simulation.getAvaragedResult(),
                                                                            pi.get()));
@@ -65,7 +65,7 @@ BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumb
 	float totalTime = bruteforceByNumOfConservators.at(bestWorkingTimeNumOfConservators - 1).at(indexBestWorkingTime).first.totalTime;
 
 	std::cout << "============================================================" << std::endl;
-	std::cout << "BruteForce(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", repets=" << repets << ")" << std::endl;
+	std::cout << "BruteForce(maxCost=" << maxCost << ", maxNumberOfConservators=" << maxNumberOfConservators << ", repeats=" << repeats << ")" << std::endl;
 	std::cout << "============================================================" << std::endl;
 	std::cout << "Total checked combinations = " << counter << std::endl;
 	std::cout << "Time elapsed = " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << " ms" << std::endl;
@@ -83,5 +83,5 @@ BruteForce::BruteForce(SimulationData simulationData, uint maxCost, uint maxNumb
     std::cout << "Numebr of conservators: " << bestTotalTimeNumOfConservators << std::endl;
     std::cout << "SimulationData:" << std::endl;
     std::cout << bruteforceByNumOfConservators.at(bestTotalTimeNumOfConservators - 1).at(indexBestTotalTime).second << std::endl;
-	std::cout << "============================================================" << std::endl;
+	std::cout << "============================================================" << std::endl << std::endl << std::endl << std::endl;
 }

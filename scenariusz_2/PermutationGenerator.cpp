@@ -25,6 +25,7 @@ SimulationData PermutationGenerator::nextPermutation()
     return sd;
 }
 
-SimulationData PermutationGenerator::operator++() {
+SimulationData PermutationGenerator::operator++()
+{
     return nextPermutation();
 }

@@ -14,7 +14,7 @@
 class Evolution
 {
 public:
-    Evolution(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repets, uint individuals, uint generations);
+    Evolution(SimulationData simulationData, uint maxCost, uint maxNumberOfConservators, uint repeats, uint individuals, uint generations);
 };
 
 #endif // EVOLUTION_H

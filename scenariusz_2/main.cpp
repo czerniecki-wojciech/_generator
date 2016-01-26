@@ -16,7 +16,8 @@ int main(int argc, char* argv[])
 {
 	CommandLineParser clp(argc, argv);
 
-	if (clp.generatorInputFile && clp.outputFile) {
+	if (clp.generatorInputFile && clp.outputFile) 
+	{
 		SimulationInputDataGenerator generator(clp.generatorInputFile_file);
 		SimulationInputData simulationInputData2 = generator.generate();
 
@@ -33,25 +34,28 @@ int main(int argc, char* argv[])
 
 		SimulationData simulationData(simulationInputData);
 
-		if (clp.Adaptive) {
-			Adaptive ad(simulationData, simulationInputData.maxCost, simulationInputData.maxNumberOfConservators, clp.repets);
+		if (clp.Adaptive) 
+		{
+			Adaptive ad(simulationData, simulationInputData.maxCost, simulationInputData.maxNumberOfConservators, clp.repeats);
 		}
-		if (clp.BruteForce) {
-			BruteForce bf(simulationData, simulationInputData.maxCost, simulationInputData.maxNumberOfConservators, clp.repets);
+		if (clp.BruteForce) 
+		{
+			BruteForce bf(simulationData, simulationInputData.maxCost, simulationInputData.maxNumberOfConservators, clp.repeats);
 		}
-		if (clp.Evolution) {
+		if (clp.Evolution) 
+		{
 			EvolutionHelper eh(simulationInputData.maxCost, simulationData);
 
 			uint numOfIndividuals = eh.getIndividualsNum();
 			uint numOfGenerations = eh.getGenerationNum();
-			Evolution ev(simulationData, simulationInputData.maxCost, simulationInputData.maxNumberOfConservators, clp.repets, numOfIndividuals, numOfGenerations);
+			Evolution ev(simulationData, simulationInputData.maxCost, simulationInputData.maxNumberOfConservators, clp.repeats, numOfIndividuals, numOfGenerations);
 		}
 	}
 	else {
 		std::cout << "TUTAJ BEDZIE HELP" << std::endl;
 		std::cout << "na razie trzeba wpisywac takie komendy:" << std::endl;
 		std::cout << "./main.exe --generatorInputFile generator_input.txt --outputFile simulation_input.txt" << std::endl;
-		std::cout << "./main.exe --simulationInputFile simulation_input.txt --BruteForce --Evolution --Adaptive --repets 1" << std::endl;
+		std::cout << "./main.exe --simulationInputFile simulation_input.txt --BruteForce --Evolution --Adaptive --repeats 1" << std::endl;
 
 		std::cout << std::endl << "przykladowy plik generator_input.txt:" << std::endl;
 		std::cout << "#max cost" << std::endl;
@@ -74,50 +78,7 @@ int main(int argc, char* argv[])
 		std::cout << "1" << std::endl;
 		std::cout << "10" << std::endl;
 	}
-	/*
-    //generator
-    std::pair<float, float> priceLimit = std::make_pair(1.0f, 10.1f);
-    std::pair<float, float> shapeLimit = std::make_pair(1.0f, 10.1f);
-    std::pair<uint, uint> scaleLimit = std::make_pair(1, 10);
 
-    std::shared_ptr<OutputsLimits> outputsLimits = std::make_shared<OutputsLimits>(shapeLimit, scaleLimit);
-    std::shared_ptr<ConservatorLimits> conservatorLimits = std::make_shared<ConservatorLimits>(shapeLimit, scaleLimit);
-
-	uint maxCost = 50;
-	uint maxNumberOfConservators = 3;
-
-    //SimulationInputDataGenerator generator(4, outputsLimits, priceLimit, conservatorLimits, maxCost, maxNumberOfConservators);
-	SimulationInputDataGenerator generator("generator_input.txt");
-    SimulationInputData simulationInputData2 = generator.generate();
-
-	ofstream plik("aaa.txt");
-
-	plik << simulationInputData2;
-	plik.close();
-
-	SimulationInputData simulationInputData("aaa.txt");
-
-    //simulator
-    SimulationData simulationData(simulationInputData);
-
-//    simulationData.setNumOfReplaceKitForElement(0 ,2);
-//    simulationData.setNumOfReplaceKitForElement(1 ,3);
-
-    cout << simulationInputData;
-
-    uint repets = 100;
-
-	EvolutionHelper eh(maxCost, simulationData);
-
-    uint numOfIndividuals = eh.getIndividualsNum();
-    uint numOfGenerations = eh.getGenerationNum();
-
-    BruteForce bf(simulationData, maxCost, maxNumberOfConservators, repets);
-    Evolution ev(simulationData, maxCost, maxNumberOfConservators, repets, numOfIndividuals, numOfGenerations);
-	Adaptive ad(simulationData, maxCost, maxNumberOfConservators, repets);
-	
-	system("pause");
-	*/
     return 0;
 }
 

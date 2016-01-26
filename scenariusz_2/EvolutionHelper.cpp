@@ -23,15 +23,15 @@ uint EvolutionHelper::getGenerationNum()
 	uint elementsNum = sd.getElementsNum();
 	uint result = 1;
 
-	for (uint i = 1; i < elementsNum; ++i)
+	for (uint i = 0; i < elementsNum; ++i)
 	{
 		sd.setNumOfReplaceKitForElement(i, 1);
-		result *= maxCost / sd.getTotalCostOfElement(i);
+		result *= maxCost / sd.getTotalCostOfElement(i) / 2;
 	}
 
-	result /= elementsNum;
+	result = sqrt(result / elementsNum);
 
-	return sqrt(result);
+	return result / elementsNum;
 }
 
 uint EvolutionHelper::getIndividualsNum()
@@ -39,13 +39,14 @@ uint EvolutionHelper::getIndividualsNum()
 	uint elementsNum = sd.getElementsNum();
 	uint result = 1;
 
-	for (uint i = 1; i < elementsNum; ++i)
+	for (uint i = 0; i < elementsNum; ++i)
 	{
 		sd.setNumOfReplaceKitForElement(i, 1);
+		uint a = sd.getTotalCostOfElement(i);
 		result *= maxCost / sd.getTotalCostOfElement(i);
 	}
 
-	result /= elementsNum;
+	result = sqrt(result / elementsNum);
 
-	return sqrt(result);
+	return result / elementsNum;
 }
