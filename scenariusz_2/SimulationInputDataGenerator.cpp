@@ -87,13 +87,6 @@ SimulationInputData SimulationInputDataGenerator::generate()
 
     for(uint i=0; i<this->elementsNum; ++i)
     {
-		std::cout << (outputsLimits->shapeLimit.second - outputsLimits->shapeLimit.first) << std::endl;
-		std::cout << (outputsLimits->shapeLimit.second - outputsLimits->shapeLimit.first) << std::endl;
-		std::cout << int((outputsLimits->shapeLimit.second - outputsLimits->shapeLimit.first) * 10.0f) << std::endl;
-		std::cout << static_cast<float>(rand() % int((outputsLimits->shapeLimit.second - outputsLimits->shapeLimit.first)) * 10.0f) << std::endl;
-		std::cout << static_cast<float>(rand() % int((outputsLimits->scaleLimit.second - outputsLimits->scaleLimit.first)) * 10.0f) / outputsLimits->scaleLimit.second << std::endl;
-
-
 		min = outputsLimits->shapeLimit.first;
 		max = outputsLimits->shapeLimit.second;
 		shape = rand() % int((max - min) * 10.0f) / 10.0f + min;

@@ -52,29 +52,28 @@ int main(int argc, char* argv[])
 		}
 	}
 	else {
-		std::cout << "TUTAJ BEDZIE HELP" << std::endl;
-		std::cout << "na razie trzeba wpisywac takie komendy:" << std::endl;
-		std::cout << "./main.exe --generatorInputFile generator_input.txt --outputFile simulation_input.txt" << std::endl;
-		std::cout << "./main.exe --simulationInputFile simulation_input.txt --BruteForce --Evolution --Adaptive --repeats 1" << std::endl;
+        std::cout << "Example use:" << std::endl;
+        std::cout << "./_generator --generatorInputFile generator_input.txt --outputFile simulation_input.txt" << std::endl << "^ generates simulation input file from generator_input.txt" << std::endl;
+        std::cout << "./_generator --simulationInputFile simulation_input.txt --BruteForce --Evolution --Adaptive --repeats 100" << std::endl << "^ starts simulation with all three algorithms on sinulation_indput.txt simulation data with repeats set to 1000" << std::endl;
 
-		std::cout << std::endl << "przykladowy plik generator_input.txt:" << std::endl;
+        std::cout << std::endl << "Example generator_input.txt:" << std::endl;
 		std::cout << "#max cost" << std::endl;
 		std::cout << "50" << std::endl;
 		std::cout << "#max number of conservators" << std::endl;
 		std::cout << "3" << std::endl;
-		std::cout << "#conservator weibull limits(shape_min, shape_max, scale_min, scale_max)" << std::endl;
+        std::cout << "#conservator weibull limits(shape_min, shape_max, scale_min, scale_max) accepts floats" << std::endl;
 		std::cout << "1" << std::endl;
 		std::cout << "10" << std::endl;
 		std::cout << "1" << std::endl;
 		std::cout << "10" << std::endl;
 		std::cout << "#number of elements" << std::endl;
 		std::cout << "4" << std::endl;
-		std::cout << "#elements weibull limits(shape_min, shape_max, scale_min, scale_max)" << std::endl;
+        std::cout << "#elements weibull limits(shape_min, shape_max, scale_min, scale_max) accepts floats" << std::endl;
 		std::cout << "1" << std::endl;
 		std::cout << "10" << std::endl;
 		std::cout << "1" << std::endl;
 		std::cout << "10" << std::endl;
-		std::cout << "#element price limits" << std::endl;
+        std::cout << "#element price limits, only integer values" << std::endl;
 		std::cout << "1" << std::endl;
 		std::cout << "10" << std::endl;
 	}
